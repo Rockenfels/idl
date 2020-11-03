@@ -33,8 +33,8 @@ class UsersController < ApplicationController
         end
     end
 
-    def delete
-        user = User.find_by('id': [:params][:user][:id])
+    def destroy
+        user = User.find_by(id: params[:id])
         if !user.nil?
             user.destroy
             render json: {message: 'user successfully deleted'}

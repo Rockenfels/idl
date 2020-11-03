@@ -16,7 +16,7 @@ class VideosController < ApplicationController
     end
 
     def show
-        video = Video.find_by('id': [:params][:id])
+        video = Video.find_by('id': params[:id])
         if !video.nil? 
             render json: video, except: [:updated_at, :user_id]
         else
@@ -25,7 +25,7 @@ class VideosController < ApplicationController
     end
 
     def update
-        video = Video.find_by('id': [:params][:video][:id])
+        video = Video.find_by('id': params[:id])
         if !video.empty?
             video.update(video_params)
             render json: video, except: [:updated_at, :user_id]
@@ -34,8 +34,8 @@ class VideosController < ApplicationController
         end
     end
 
-    def delete
-        video = Video.find_by('id': [:params][:video][:id])
+    def destroy
+        video = Video.find_by('id': params[:id])
         if !video.nil?
             video.destroy
             render json: {message: 'video successfully deleted'}
