@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     def index
         users = User.all()
-        render json: users, include: [:username]
+        render json: users, except: [:email, :password_digest, :updated_at, :created_at]
     end
 
     def create
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     def show
         user = User.find_by('id': [:params][:id])
         if !user.nil? 
-            render json: user include: [:username]
+            render json: user, include: [:username]
         else
             render json: {message: 'user not found'}
         end
