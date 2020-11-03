@@ -1,6 +1,5 @@
 class Video < ApplicationRecord
     belongs_to :user
 
-    validates [:url, :name], uniqueness: true
-    
+    validates :title, uniqueness: true
 end

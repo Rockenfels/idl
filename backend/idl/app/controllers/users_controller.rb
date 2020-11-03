@@ -1,25 +1,25 @@
 class UsersController < ApplicationController
     def index
         users = User.all()
-        return json: users
+        render json: users, include: [:username]
     end
 
     def create
         user = User.new(user_params)
 
         if user.save
-            return json: user
+            render json: user, include: [:username]
         else
-            return json: {status: "error", errors: [user.errors.full_messages]}
+            render json: {status: "error", errors: [user.errors.full_messages]}
         end
     end
 
     def show
         user = User.find_by('id': [:params][:id])
         if !user.nil? 
-            return json: user
+            render json: user include: [:username]
         else
-            return json: {message: 'user not found'}
+            render json: {message: 'user not found'}
         end
     end
 
@@ -27,9 +27,9 @@ class UsersController < ApplicationController
         user = User.find_by('id': [:params][:user][:id])
         if !user.empty?
             user.update(user_params)
-            return json: user
+            render json: user
         else
-            return json: {message: "error - invalid user data"}
+            render json: {message: "error - invalid user data"}
         end
     end
 
@@ -37,9 +37,9 @@ class UsersController < ApplicationController
         user = User.find_by('id': [:params][:user][:id])
         if !user.nil?
             user.destroy
-            return json: {message: 'user successfully deleted'}
+            render json: {message: 'user successfully deleted'}
         else
-            return json: {message: 'couldn\'t find user'}
+            render json: {message: 'couldn\'t find user'}
         end
     end
 

@@ -1,25 +1,26 @@
 class VideosController < ApplicationController
     def index
         videos = Video.all()
-        return json: videos
+        render json: videos, except: [:updated_at, :user_id]
     end
 
     def create
         video = Video.new(video_params)
+        #add code to include user id upon creation
 
         if video.save
-            return json: video
+            render json: video, except: [:updated_at, :user_id]
         else
-            return json: {status: "error", errors: [video.errors.full_messages]}
+            render json: {status: "error", errors: [video.errors.full_messages]}
         end
     end
 
     def show
         video = Video.find_by('id': [:params][:id])
         if !video.nil? 
-            return json: video
+            render json: video, except: [:updated_at, :user_id]
         else
-            return json: {message: 'video not found'}
+            render json: {message: 'video not found'}
         end
     end
 
@@ -27,9 +28,9 @@ class VideosController < ApplicationController
         video = Video.find_by('id': [:params][:video][:id])
         if !video.empty?
             video.update(video_params)
-            return json: video
+            render json: video, except: [:updated_at, :user_id]
         else
-            return json: {message: "error - invalid video data"}
+            render json: {message: "error - invalid video data"}
         end
     end
 
@@ -37,15 +38,15 @@ class VideosController < ApplicationController
         video = Video.find_by('id': [:params][:video][:id])
         if !video.nil?
             video.destroy
-            return json: {message: 'video successfully deleted'}
+            render json: {message: 'video successfully deleted'}
         else
-            return json: {message: 'couldn\'t find video'}
+            render json: {message: 'couldn\'t find video'}
         end
     end
 
     private
 
     def video_params
-        params.require(:video).permit(:name, :email, :password)
+        params.require(:video).permit(:title, :email, :password)
     end
 end
