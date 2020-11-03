@@ -14,6 +14,15 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        user = User.find_by('id': [:params][:id])
+        if !user.nil? 
+            return json: user
+        else
+            return json: {message: 'user not found'}
+        end
+    end
+
     def update
         user = User.find_by('id': [:params][:user][:id])
         if !user.empty?
