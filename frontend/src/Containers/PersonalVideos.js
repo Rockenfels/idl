@@ -9,6 +9,6 @@ const PersonalVideos = ({match, videos}) => {
             </div>
         )
     
-        };
+};
 
 export default PersonalVideos;
