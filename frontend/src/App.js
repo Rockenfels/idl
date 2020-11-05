@@ -13,7 +13,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/users">
-          <AllUsers users={this.props.users}/>
+          <AllUsers />
         </Route>
         <Route path="/users/:user">
           <User {...this.props.match} user={this.props.users[this.props.match.params.user]}/>
@@ -33,9 +33,9 @@ function App() {
   );
 }
 const mapStateToProps = (state) => ({
-  isLoggedIn: state.users.isLoggedIn,
   videos: state.videos,
-  users: state.users
+  users: state.users,
+  user: state.user
 });
 
 export default connect(mapStateToProps, { })(App);
