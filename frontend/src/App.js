@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom'
 import Footer from './Components/Display/Footer';
 import NavBar from './Components/Display/NavBar';
@@ -28,12 +29,6 @@ function App() {
     </div>
   );
 }
-export default App;
-
-
-/* IN CASE OF CONNECT - BREAK COMMENT!
-import { connect } from 'react-redux';
-
 const mapStateToProps = (state) => ({
   isLoggedIn: state.users.isLoggedIn,
   videos: state.videos,
@@ -41,4 +36,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { })(App);
-*/
