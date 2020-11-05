@@ -15,6 +15,6 @@ class AllVideos extends React.Component{
     }
 }
 const mapStateToProps = (state) => ({
-    videos: state.video
+    videos: state.videos
 })
 export default connect(mapStateToProps)(AllVideos);

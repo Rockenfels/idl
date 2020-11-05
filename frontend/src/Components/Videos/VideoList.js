@@ -11,6 +11,7 @@ const VideoList = (props) => {
     
     return(
         <div className="video-list">
+            <h1>Videos</h1>
             {this.renderVideos()}  
         </div>
     );
