@@ -34,6 +34,27 @@ export const sendLogin = (user) => {
     }
 }
 
+export const sendSignup = (user) => {
+    return (dispatch) => {
+        dispatch(pending);
+        let formData = {
+            user
+          };
+          let configObj = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+          };
+      
+          fetch(url + "signup", configObj).then(response => response.json()).then(json => {
+              json.message === 'User Created' ? window.alert('user created, please sign in') : window.alert('Invalid data or user already exists. Try again.');
+          });
+    }
+}
+
 export const logout = () => ({
     type: 'LOGOUT'
 }) 
