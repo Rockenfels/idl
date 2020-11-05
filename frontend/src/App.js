@@ -12,14 +12,17 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route path="/users">
+          <AllUsers users={this.props.users}/>
+        </Route>
         <Route path="/users/:user">
-          <User user={this.props.match.user}/>
+          <User {...this.props.match} user={this.props.users[this.props.match.params.user]}/>
         </Route>
         <Route path="/videos">
-          <AllVideos/>
+          <AllVideos />
         </Route>
         <Route path="/videos/:video">
-          <VideoViewer video={this.props.match.video} />
+          <VideoViewer video={this.props.match.params.video} />
         </Route>
         <Route>
           <NoMatch />

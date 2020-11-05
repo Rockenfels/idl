@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const PersonalVideos = ({match, videos}) => {
+class PersonalVideos extends React.Component{
+    render(){
         let myVids = this.props.videos.filter(video => video.user_id === this.props.user.id);
         return(
             <div>
                 <VideoList videos={myVids} />
-                <Route path={`${match.url}/:videoId`} render={() => 
+                <Route path={`${this.props.match.url}/:videoId`} render={() => 
                     <VideoViewer video={myVids[this.props.match.params.videoId]} />}
                 />
             </div>
         )
-    
+    }
 };
 
-export default PersonalVideos;
+const mapStateToProps = (state) => ({
+  videos: state.videos  
+})
+
+export default connect(mapStateToProps)(PersonalVideos);
