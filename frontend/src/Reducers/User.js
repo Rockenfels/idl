@@ -5,12 +5,20 @@ export const login = (user) => ({
     user
 });
 
+export const logout = () => ({
+    type: 'LOGOUT'
+}) 
+
 export const pending = () => ({
     type: 'PENDING'
 })
 
 export const rejected = () => ({
     type: 'REJECTED'
+})
+
+export const accepted = () => ({
+    type: 'ACCEPTED'
 })
 
 export const sendLogin = (user) => {
@@ -28,7 +36,7 @@ export const sendLogin = (user) => {
             body: JSON.stringify(formData)
           };
       
-          fetch(url + "login", configObj).then(response => response.json()).then(json => {
+          fetch(url + "users/login", configObj).then(response => response.json()).then(json => {
               json.message === 'User Found' ? dispatch(login(json.user)) : dispatch(rejected);
           });
     }
@@ -49,15 +57,45 @@ export const sendSignup = (user) => {
             body: JSON.stringify(formData)
           };
       
-          fetch(url + "signup", configObj).then(response => response.json()).then(json => {
+          fetch(url + "users/signup", configObj).then(response => response.json()).then(json => {
               json.message === 'User Created' ? window.alert('user created, please sign in') : window.alert('Invalid data or user already exists. Try again.');
           });
     }
 }
 
-export const logout = () => ({
-    type: 'LOGOUT'
-}) 
+export const sendEdit = (user) => {
+    return (dispatch) => {
+        dispatch(pending);
+        let formData = {
+            user
+          };
+          let configObj = {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+          };
+      
+          fetch(url + "users/edit", configObj).then(response => response.json()).then(json => {
+              if(json.message === 'User Updated'){
+                  dispatch(editUser(user));
+                  dispatch(accepted);
+                  window.alert('user updated, please sign in');
+              }
+              else{
+                  dispatch(rejected);
+                  window.alert('Invalid data, edit and try again.');
+              }
+          });
+    }
+}
+
+export const editUser = (user) => ({
+    type: 'EDIT_USER',
+    user
+})
 
 export default function user(state={user: null, pending: false, accepted: false, rejected: false}, action){
     switch(action.type){
@@ -65,10 +103,14 @@ export default function user(state={user: null, pending: false, accepted: false,
             return {user: action.user, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
             return {...state, user: null}
+        case 'ACCEPTED':
+            return {...state, accepted: true, rejected: false, pending: false}
         case 'PENDING':
             return {...state, pending: true, accepted: false, rejected: false};
         case 'REJECTED':
             return {...state, rejected: true, accepted: false, pending: false};
+        case 'EDIT_USER':
+            return {...state, user: action.user}
         default:
             return state;
     }

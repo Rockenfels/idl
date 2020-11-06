@@ -1,13 +1,5 @@
 import uuid from 'uuid';
 
-export const login = (user) => {
-    type: 'LOGIN',
-    user
-}
-
-export const logout = () => {
-    type: 'LOGOUT'
-}
 
 export const addUser = (user) => {
     type: "ADD_USER",
@@ -25,7 +17,7 @@ export default function manageUsers(state={
     users: []
     }, action){
 
-    //consider ading a logic statement to validate current user to both cases
+    //consider adding a logic statement to validate current user to both cases
     switch(action.type){
         case 'LOGIN':
             return {...state, isLoggedIn: true, currentUserId: action.user.id}
