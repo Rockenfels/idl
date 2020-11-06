@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeVideo } from '../Reducers/manageVideos';
+import { removeVideo } from '../../Reducers/manageVideos';
 
 class PersonalVideos extends React.Component{
     handleClick = (e, uid) => {
