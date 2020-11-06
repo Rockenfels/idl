@@ -6,7 +6,7 @@ import EditAccount from './EditAccount';
 
 class Account extends Component {
     genEdits = () => {
-        document.getElementById('account').appendChild(<EditAccount user={this.props.user}/>);
+        document.getElementById('edit-form-container').appendChild(<EditAccount user={this.props.user}/>);
     }
 
     render(){    
@@ -14,7 +14,9 @@ class Account extends Component {
             <div id='account' className='account'>
                 <h2>Your Contributions:</h2>
                 <PersonalVideos user={this.props.user} />
-                <button onClick={this.genEdits} >Edit Account</button>
+                <div id='edit-form-container'>
+                    <button onClick={this.genEdits} >Edit Account</button>
+                </div>
             </div>
         );
     }
