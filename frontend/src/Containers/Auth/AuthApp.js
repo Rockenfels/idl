@@ -51,7 +51,6 @@ class AuthApp extends Component{
 
 const mapStateToProps = (state) => ({
     videos: state.videos,
-    users: state.users,
-    user: state.user
+    users: state.users
 })
 export default connect(mapStateToProps,{logout})(AuthApp)
