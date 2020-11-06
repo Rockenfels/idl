@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
-class AllUsers extends React.Component{
+import { UserList } from '../../Components/Users/UserList';
+
+class AllUsers extends Component{
     render(){
         return (
             <div>

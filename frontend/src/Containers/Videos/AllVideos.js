@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
-class AllVideos extends React.Component{
+import { VideoList } from '../../Components/Videos/VideoList'
+import { VideoViewer } from '../../Components/Videos/VideoViewer'
+class AllVideos extends Component{
     render(){
         return (
             <div>

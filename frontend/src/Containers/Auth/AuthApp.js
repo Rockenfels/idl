@@ -3,7 +3,15 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import { logout } from '../../Reducers/User';
 
-
+//Component & Container Imports
+import { AuthNavBar } from '../../Components/Display/AuthNavBar';
+import { Home } from '../../Components/Display/Home';
+import { AllUsers } from '../Users/AllUsers';
+import { User } from '../../Components/Users/User';
+import { AllVideos } from '../Videos/AllVideos';
+import { VideoViewer } from '../../Components/Videos/VideoViewer';
+import { NoMatch } from '../../Components/Display/NoMatch';
+import { Footer } from '../../Components/Display/Footer'; 
 class AuthApp extends Component{
     render(){
         return(
