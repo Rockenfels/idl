@@ -37,7 +37,7 @@ class AuthApp extends Component{
                 <VideoViewer video={this.props.videos[this.props.match.params.video]} />
               </Route>
               <Route path='/account'>
-                  
+                  <Account />
               </Route>
               <Route>
                 <NoMatch />
