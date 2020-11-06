@@ -6,10 +6,6 @@ class AllUsers extends React.Component{
             <div>
                 <h2>Here's who you're adventuring with:</h2>
                 <UserList users={this.props.users} />
-
-                <Route exact path={`${match.url}/:userId`} render={() => 
-                    <User user={this.props.users[this.props.match.params.userId]} />}
-                />
             </div>
         )
     }

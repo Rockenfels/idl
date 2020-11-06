@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
-import { logout } from '../Reducers/User';
+import { logout } from '../../Reducers/User';
 
 
 class AuthApp extends Component{
@@ -15,12 +15,15 @@ class AuthApp extends Component{
               </Route>
               <Route path="/users">
                 <AllUsers />
+                <Route exact path={`${match.url}/:userId`} render={() => 
+                    <User match={this.props.match} user={this.props.users.filter(user => user.uid === this.props.match.params.userId)} />}
+                />
               </Route>
               <Route path="/users/:user">
-                <User {...this.props.match} user={this.props.users[this.props.match.params.user]}/>
+                <User match={this.props.match} user={this.props.users.filter(user => user.uid === this.props.match.params.userId)}/>
               </Route>
               <Route path="/videos">
-                <AllVideos />
+                <AllVideos match={this.props.match} />
               </Route>
               <Route path="/videos/:video">
                 <VideoViewer video={this.props.videos[this.props.match.params.video]} />

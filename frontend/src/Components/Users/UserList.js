@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const UserList = (props) => {
     renderUsers = () => {
         return props.users.map(user => {
-            return( <div className="user-item"><Link key={user.uid} to={`/users/${user.uid}`}>{user.title}</Link></div>)
+            return( <div className="user-item"><Link key={user.uid} to={`/users/${user.uid}`}>{user.username}</Link></div>)
         })
     }
     

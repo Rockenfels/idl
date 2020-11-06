@@ -4,11 +4,11 @@ class AllVideos extends React.Component{
     render(){
         return (
             <div>
-                <h2>Here's something to keep you busy:</h2>
+                <h2>Pick something to keep you busy:</h2>
                 <VideoList videos={this.props.videos} />
 
-                <Route exact path={`${match.url}/:videoId`} render={() => 
-                    <VideoViewer video={this.props.videos[this.props.match.params.videoId]} />}
+                <Route exact path={`${this.props.match.url}/:videoId`} render={() => 
+                    <VideoViewer video={this.props.videos.filter(video => video.uid === this.props.match.params.videoId)} />}
                 />
             </div>
         )

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Player }from 'video-react';
 
-const VideoViewer = ({match, video}) => {
+const VideoViewer = (props) => {
     return (
         <div>
              <Player
-                playsInline
                 fluid
                 src={props.video.url}
             />
         </div>
     );
 }
+export default VideoViewer;
