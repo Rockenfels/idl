@@ -1,39 +1,19 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom'
-import Footer from './Components/Display/Footer';
-import NavBar from './Components/Display/NavBar';
+import AuthApp from './Containers/Auth/AuthApp';
+import UnauthApp from './Containers/Auth/UnauthApp';
 
-function App() {
-  return (
-    <div className="app">
-      <NavBar />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/users">
-          <AllUsers />
-        </Route>
-        <Route path="/users/:user">
-          <User {...this.props.match} user={this.props.users[this.props.match.params.user]}/>
-        </Route>
-        <Route path="/videos">
-          <AllVideos />
-        </Route>
-        <Route path="/videos/:video">
-          <VideoViewer video={this.props.match.params.video} />
-        </Route>
-        <Route>
-          <NoMatch />
-        </Route>
-      </Switch>
-      <Footer />
-    </div>
-  );
+class App extends Component {
+  debugger;
+  render(){
+    return (
+    <>
+      {this.props.user !== null ? 
+        <AuthApp /> : 
+        <UnauthApp/>}
+    </>
+    );
+  }
 }
 const mapStateToProps = (state) => ({
   videos: state.videos,

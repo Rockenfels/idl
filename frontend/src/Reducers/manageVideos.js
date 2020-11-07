@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export const addVideo = (video) => {
     type: "ADD_VIDEO",

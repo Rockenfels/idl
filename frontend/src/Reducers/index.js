@@ -1,7 +1,7 @@
-import { manageUsers } from './manageUsers';
-import { manageVideos } from './manageVideos';
-import { user } from './user';
-import { combineReducers } from 'react-redux';
+import  manageUsers  from './manageUsers';
+import manageVideos from './manageVideos';
+import user from './user';
+import { combineReducers } from 'redux';
 
 
 export default combineReducers({

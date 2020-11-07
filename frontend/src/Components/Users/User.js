@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserVideos } from '../../Containers/Videos/UserVideos';
+import UserVideos from '../../Containers/Videos/UserVideos';
 
 const User = (props) => {
     return(

@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 
 export const addUser = (user) => {
@@ -11,13 +11,10 @@ export const removeUser = (user) => {
     user
 }
 
-export default function manageUsers(state={
-    isLoggedIn: false,
-    currentUserId: null,
+function manageUsers(state={
     users: []
     }, action){
 
-    //consider adding a logic statement to validate current user to both cases
     switch(action.type){
         case 'LOGIN':
             return {...state, isLoggedIn: true, currentUserId: action.user.id}
@@ -32,3 +29,4 @@ export default function manageUsers(state={
             return state;
     }
 }
+export default manageUsers;

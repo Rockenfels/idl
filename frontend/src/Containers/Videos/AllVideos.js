@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { VideoList } from '../../Components/Videos/VideoList'
-import { VideoViewer } from '../../Components/Videos/VideoViewer'
+import VideoList from '../../Components/Videos/VideoList'
+import VideoViewer from '../../Components/Videos/VideoViewer'
 class AllVideos extends Component{
     render(){
         return (
