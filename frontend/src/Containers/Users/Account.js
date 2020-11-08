@@ -2,12 +2,10 @@ import { Component } from 'react'
 import { connect } from 'react-redux';
 import PersonalVideos from '../Videos/PersonalVideos';
 import EditAccount from './EditAccount';
+import { Link, Route } from 'react-router-dom';
 
 
 class Account extends Component {
-    genEdits = () => {
-        document.getElementById('edit-form-container').appendChild(<EditAccount user={this.props.user}/>);
-    }
 
     render(){    
         return (
@@ -15,7 +13,10 @@ class Account extends Component {
                 <h2>Your Contributions:</h2>
                 <PersonalVideos user={this.props.user} />
                 <div id='edit-form-container'>
-                    <button onClick={this.genEdits} >Edit Account</button>
+                    <Link to='/account/edit'>Edit Account</Link>
+                    <Route path='/account/edit' >
+                        <EditAccount id='edit' user={this.props.user} style={{display: 'none'}}/>
+                    </Route>
                 </div>
             </div>
         );

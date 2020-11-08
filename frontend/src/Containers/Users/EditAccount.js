@@ -21,20 +21,22 @@ class EditAccount extends Component {
         const { sendEdit } = this.props;
         let updates = {
             uid: this.props.user.uid,
-            email: e.target.email.value, 
-            password: e.target.password
+            email: this.state.email, 
+            password: this.state.password
         }       
         sendEdit(updates);
     }
+
+    
 
     render(){
         
         return(
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor='new-email'>New Email:</label>
-                <input id='new-email' type="text" name="email" value={this.state.email}/>
+                <input id='new-email' type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
                 <label htmlFor='new-password'>New Password:</label>
-                <input id='new-password' type="password" name="password" value={this.state.password}/>
+                <input id='new-password' type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
                 <input type="submit" value="Update" />
             </form>
         );
