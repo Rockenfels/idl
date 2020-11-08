@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { sendEdit } from '../../Reducers/user'
 
 class EditAccount extends Component {
     constructor(props){

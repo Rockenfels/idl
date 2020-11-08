@@ -8,7 +8,7 @@ class App extends Component {
   render(){
     return (
     <>
-      {this.props.user !== null ? 
+      {this.props.user !== undefined ? 
         <AuthApp /> : 
         <UnauthApp/>}
     </>

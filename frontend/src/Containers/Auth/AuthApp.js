@@ -11,7 +11,9 @@ import User from '../../Components/Users/User';
 import AllVideos from '../Videos/AllVideos';
 import VideoViewer from '../../Components/Videos/VideoViewer';
 import NoMatch from '../../Components/Display/NoMatch';
+import Account from '../Users/Account'
 import Footer from '../../Components/Display/Footer'; 
+
 class AuthApp extends Component{
     render(){
         return(
@@ -21,12 +23,14 @@ class AuthApp extends Component{
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route path="/users">
-                <AllUsers />
-                <Route exact path={`${match.url}/:userId`} render={() => 
-                    <User match={this.props.match} user={this.props.users.filter(user => user.uid === this.props.match.params.userId)} />}
-                />
-              </Route>
+              <Route path="/users"render={(routerProps) => {
+                <div id="auth-users">
+                  <AllUsers {...routerProps} />
+                  <Route exact path={`/${this.props.match.url}/:userId`} render={(routerProps) => 
+                      <User match={routerProps.match} user={this.props.users.filter(user => user.uid === routerProps.match.params.userId)} />}
+                  />
+                </div>
+              }}/>
               <Route path="/users/:user">
                 <User match={this.props.match} user={this.props.users.filter(user => user.uid === this.props.match.params.userId)}/>
               </Route>
