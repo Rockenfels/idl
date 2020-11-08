@@ -4,11 +4,11 @@ import AuthApp from './Containers/Auth/AuthApp';
 import UnauthApp from './Containers/Auth/UnauthApp';
 
 class App extends Component {
-  debugger;
   render(){
+    debugger;
     return (
     <>
-      {this.props.user !== undefined ? 
+      {this.props.user.user !== undefined ? 
         <AuthApp /> : 
         <UnauthApp/>}
     </>
