@@ -5,7 +5,7 @@ const UnauthNavBar = () => {
         return(
             <nav>
                 <NavLink exact to='/' className="item">
-                    <image src="" alt="idl logo" />
+                    <img src="" alt="idl logo" />
                 </NavLink>
                 <NavLink exact to='/myVideos' className="item">My Videos</NavLink>
                 <NavLink exact to="/videos" className="item">Videos</NavLink>

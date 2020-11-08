@@ -97,7 +97,7 @@ export const editUser = (user) => ({
     user
 })
 
-export default function user(state={user: null, pending: false, accepted: false, rejected: false}, action){
+export default function user(state={user: undefined, pending: false, accepted: false, rejected: false}, action){
     switch(action.type){
         case 'LOGIN':
             return {user: action.user, accepted: true, pending: false, rejected: false};
