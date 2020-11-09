@@ -21,7 +21,7 @@ import { getUsers } from '../../Reducers/manageUsers';
 
   render(){
       return(
-          <div className="app">
+          <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />
           <Switch>
             <Route exact path="/">
@@ -29,17 +29,18 @@ import { getUsers } from '../../Reducers/manageUsers';
             </Route>
 
             <Route path="/users">
-              <div id="auth-users">
+              <div id="unauth-users">
                 <AllUsers users={this.props.users} />
-                <Route path={`/users/:userId`} render={(routerProps) => 
-                    <User match={routerProps.match} user={this.props.users.users.find(user => user.uid === routerProps.match.params.userId)} />}
-                />
+                {/* <Route exact path="/users/:userId" render={(routerProps) => {
+                  <User match={routerProps.match} user={this.props.users.users.find(user => user.uid === routerProps.match.params.userId)} />}
+                }/> */}
               </div>
             </Route>
             
-            <Route exact path={`/users/:userId`} render={(routerProps) => 
-                                  <User match={routerProps.match} user={this.props.users.users.filter(user => user.uid === routerProps.match.params.userId)} />}
-                          />
+            <Route exact path={`/users/:userId`} render={(routerProps) => {
+              debugger;
+              <User match={routerProps.match} user={this.props.users.users.filter(user => user.uid === routerProps.match.params.userId)} />}
+           } />
 
             <Route path={`/videos`} >
               <AllVideos videos={this.props.videos} />

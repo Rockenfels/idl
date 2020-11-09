@@ -7,7 +7,7 @@ const User = (props) => {
         <div className="user-container" >
             <h1>{props.user.username}</h1>
             <h2>{props.user.username}'s contributions: </h2>
-            <UserVideos match={props.match}/>
+            <UserVideos user={props.user}/>
         </div>
     );
 }

@@ -10,8 +10,8 @@ class UserVideos extends Component{
         return(
             <div>
                 <VideoList videos={myVids} />
-                <Route path={`${this.props.match.url}/:videoId`} render={() => 
-                    <VideoViewer video={myVids[this.props.match.params.videoId]} />}
+                <Route path={`videos/:videoId`} render={(routerProps) => 
+                    <VideoViewer video={myVids.filter(video => video.uid === routerProps.match.params.videoId)} />}
                 />
             </div>
         )
