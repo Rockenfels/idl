@@ -5,7 +5,6 @@ import UnauthApp from './Containers/Auth/UnauthApp';
 
 class App extends Component {
   render(){
-    debugger;
     return (
     <>
       {this.props.user.user !== undefined ? 
@@ -21,4 +20,4 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { })(App);
+export default connect(mapStateToProps)(App);

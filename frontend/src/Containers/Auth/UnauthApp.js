@@ -12,6 +12,7 @@ import AllVideos from '../Videos/AllVideos';
 import VideoViewer from '../../Components/Videos/VideoViewer';
 import NoMatch from '../../Components/Display/NoMatch';
 import Footer from '../../Components/Display/Footer'; 
+import Login from './Login';
 class UnauthApp extends Component{
     render(){
         return(
@@ -36,7 +37,7 @@ class UnauthApp extends Component{
                             />
 
               <Route path="/videos" render={(routerProps) => {
-                <AllVideos match={routerProps.match} />
+                <AllVideos videos={this.props.videos} match={routerProps.match} />
               }}/>
 
               <Route path="/videos/:video" render={(routerProps) => {
@@ -46,7 +47,7 @@ class UnauthApp extends Component{
               <Route path='/login'>
                   <Login />
               </Route>
-              
+
               <Route>
                 <NoMatch />
               </Route>
@@ -61,4 +62,4 @@ const mapStateToProps = (state) => ({
     videos: state.videos,
     users: state.users
 })
-export default connect(mapStateToProps,{logout})(UnauthApp)
+export default connect(mapStateToProps,{login})(UnauthApp)

@@ -18,5 +18,5 @@ class AllVideos extends Component{
 }
 const mapStateToProps = (state) => ({
     videos: state.videos
-})
+});
 export default connect(mapStateToProps)(AllVideos);

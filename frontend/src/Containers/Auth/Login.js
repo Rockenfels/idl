@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { sendLogin, sendSignup } from '../../Reducers/User';
-import uuid from 'uuid';
+import { sendLogin, sendSignup } from '../../Reducers/user';
+import { v4 as uuid } from 'uuid';
 
 class Login extends Component {
 

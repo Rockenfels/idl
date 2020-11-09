@@ -24,7 +24,7 @@ const Home = () => {
 
                 Get up. Get active. Get better.
             </p>
-            <Link exact to="/videos" >Get Started</Link>
+            <Link to="/videos" >Get Started</Link>
         </div>
     )
 }
