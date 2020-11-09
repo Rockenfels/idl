@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
+import VideoList from '../../Components/Videos/VideoList';
+import VideoViewer from '../../Components/Videos/VideoViewer';
+import { Route } from 'react-router-dom';
 
-class UserVideos extends React.Component{
+class UserVideos extends Component{
     render(){
-        let myVids = this.props.videos.filter(video => video.user_id === this.props.user.id);
+        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.id);
         return(
             <div>
                 <VideoList videos={myVids} />

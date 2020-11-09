@@ -2,6 +2,7 @@ import React from 'react';
 import UserVideos from '../../Containers/Videos/UserVideos';
 
 const User = (props) => {
+    debugger;
     return(
         <div className="user-container" >
             <h1>{props.user.username}</h1>
