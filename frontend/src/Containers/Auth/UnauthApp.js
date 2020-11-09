@@ -23,28 +23,28 @@ class UnauthApp extends Component{
                 <Home />
               </Route>
 
-              <Route path="/users"render={(routerProps) => {
+              <Route path="/users">
                 <div id="auth-users">
-                  <AllUsers {...routerProps} />
+                  <AllUsers users={this.props.users} />
                   <Route path={`/users/:userId`} render={(routerProps) => 
-                      <User match={routerProps.match} user={this.props.users.find(user => user.uid === routerProps.match.params.userId)} />}
+                      <User match={routerProps.match} user={this.props.users.users.find(user => user.uid === routerProps.match.params.userId)} />}
                   />
                 </div>
-              }}/>
+              </Route>
               
-              <Route path={`/users/:userId`} render={(routerProps) => 
-                                    <User match={routerProps.match} user={this.props.users.find(user => user.uid === routerProps.match.params.userId)} />}
+              <Route exact path={`/users/:userId`} render={(routerProps) => 
+                                    <User match={routerProps.match} user={this.props.users.users.find(user => user.uid === routerProps.match.params.userId)} />}
                             />
 
-              <Route path="/videos" render={(routerProps) => {
-                <AllVideos videos={this.props.videos} match={routerProps.match} />
-              }}/>
+              <Route path={`/videos`} >
+                <AllVideos videos={this.props.videos} />
+              </Route>
 
-              <Route path="/videos/:video" render={(routerProps) => {
+              <Route exact path="/videos/:video" render={(routerProps) => {
                   <VideoViewer video={this.props.videos.find(target => target.uid === routerProps.match.params.video)} />
               }}/>
 
-              <Route path='/login'>
+              <Route exact path='/login'>
                   <Login />
               </Route>
 

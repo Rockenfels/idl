@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class PersonalVideoList extends Component {
     renderVideos = () => {
-        return this.props.videos.map(video => {
+        return this.props.videos.videos.map(video => {
             return( <div className="video-item">
                     <Link key={video.uid} to={`/videos/${video.uid}`}>{video.title}</Link>
                     <button onClick={this.props.removeVideo(video.uid)}>Remove Video</button>

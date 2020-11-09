@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class UserList extends Component {
     renderUsers = () => {
-        return this.props.users.map(user => {
+        return this.props.users.users.map(user => {
             return( <div className="user-item"><Link key={user.uid} to={`/users/${user.uid}`}>{user.username}</Link></div>)
         })
     }
