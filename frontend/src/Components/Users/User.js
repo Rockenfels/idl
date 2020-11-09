@@ -1,14 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import UserVideos from '../../Containers/Videos/UserVideos';
+import { useParams } from 'react-router-dom';
 
-const User = (props) => {
+
+function User (props) {
+    let { userId } = useParams();
+    let user = props.users.find(user => user.uid === userId);
     debugger;
     return(
         <div className="user-container" >
-            <h1>{props.user.username}</h1>
-            <h2>{props.user.username}'s contributions: </h2>
-            <UserVideos user={props.user}/>
+            <h1>{user.username}</h1>
+            <h2>{user.username}'s contributions: </h2>
+            <UserVideos userId={userId}/>
         </div>
-    );
+    )
 }
-export default User;
+const mapStateToProps = (state) => ({
+    user: state.user
+})
+export default connect(mapStateToProps)(User);

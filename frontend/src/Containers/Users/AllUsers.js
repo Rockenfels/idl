@@ -5,7 +5,7 @@ import UserList from '../../Components/Users/UserList';
 class AllUsers extends Component{
     render(){
         return (
-            <div>
+            <div id="unauth-userlist">
                 <h2>Here's who you're adventuring with:</h2>
                 <UserList users={this.props.users} />
             </div>

@@ -14,12 +14,15 @@ import NoMatch from '../../Components/Display/NoMatch';
 import Footer from '../../Components/Display/Footer'; 
 import Login from './Login';
 import { getUsers } from '../../Reducers/manageUsers';
+
  class UnauthApp extends Component{
   componentDidMount(){
     this.props.getUsers();
   }
 
   render(){
+      let { users } = this.props.users;
+      let { videos } = this.props.videos;
       return(
           <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />
@@ -31,23 +34,22 @@ import { getUsers } from '../../Reducers/manageUsers';
             <Route path="/users">
               <div id="unauth-users">
                 <AllUsers users={this.props.users} />
-                {/* <Route exact path="/users/:userId" render={(routerProps) => {
-                  <User match={routerProps.match} user={this.props.users.users.find(user => user.uid === routerProps.match.params.userId)} />}
-                }/> */}
+                <Route exact path="/users/:userId" >
+                  <User users={users} />
+                </Route>
               </div>
             </Route>
             
-            <Route exact path={`/users/:userId`} render={(routerProps) => {
-              debugger;
-              <User match={routerProps.match} user={this.props.users.users.filter(user => user.uid === routerProps.match.params.userId)} />}
-           } />
+            <Route exact path="/users/:userId" >
+              <User users={users} />
+            </Route>
 
             <Route path={`/videos`} >
-              <AllVideos videos={this.props.videos} />
+              <AllVideos videos={videos} />
             </Route>
 
             <Route exact path="/videos/:video" render={(routerProps) => {
-                <VideoViewer video={this.props.videos.find(target => target.uid === routerProps.match.params.video)} />
+                <VideoViewer video={videos.find(target => target.uid === routerProps.match.params.video)} />
             }}/>
 
             <Route exact path='/login'>

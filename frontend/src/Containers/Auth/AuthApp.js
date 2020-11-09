@@ -18,7 +18,7 @@ class AuthApp extends Component{
     render(){
       
         return(
-            <div className="app">
+            <div className="auth-app">
             <AuthNavBar logout={this.props.logout} />
             <Switch>
               <Route exact path="/">

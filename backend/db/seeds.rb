@@ -12,15 +12,15 @@ larry = User.create({username: 'Larry', email: 'larry@stooges.com', password: 'l
 curly = User.create({username: 'Curly', email: 'curly@stooges.com', password: 'curly', uid: uuid.generate})
 moe = User.create({username: 'moe', email: 'moe@stooges.com', password: 'moe', uid: uuid.generate})
 
-video1 = Video.create({title: 'my first video', url:'', uid: uuid.generate})
-video2 = Video.create({title: 'my second video', url:'', uid: uuid.generate})
-video3 = Video.create({title: 'my third video', url:'', uid: uuid.generate})
-video4 = Video.create({title: 'my fourth video', url:'', uid: uuid.generate})
-video5 = Video.create({title: 'my fifth video', url:'', uid: uuid.generate})
-video6 = Video.create({title: 'my sixth video', url:'', uid: uuid.generate})
-video7 = Video.create({title: 'my seventh video', url:'', uid: uuid.generate})
-video8 = Video.create({title: 'my eighth video', url:'', uid: uuid.generate})
-video9 = Video.create({title: 'my ninth video', url:'', uid: uuid.generate})
+video1 = Video.create({title: 'my first video', url:'https://youtu.be/j1pWzCLZSnc', uid: uuid.generate})
+video2 = Video.create({title: 'my second video', url:'https://youtu.be/a5r14_aXA4I', uid: uuid.generate})
+video3 = Video.create({title: 'my third video', url:'https://youtu.be/FkGK7bitav0', uid: uuid.generate})
+video4 = Video.create({title: 'my fourth video', url:'https://www.youtube.com/watch?v=LyC855KdBKo', uid: uuid.generate})
+video5 = Video.create({title: 'my fifth video', url:'https://www.youtube.com/watch?v=oPVte6aMprI', uid: uuid.generate})
+video6 = Video.create({title: 'my sixth video', url:'https://www.youtube.com/watch?v=j-2ZxldMO-M', uid: uuid.generate})
+video7 = Video.create({title: 'my seventh video', url:'https://www.youtube.com/watch?v=WGaICSbCr1c', uid: uuid.generate})
+video8 = Video.create({title: 'my eighth video', url:'https://www.youtube.com/watch?v=l9_-2oG4Cc0', uid: uuid.generate})
+video9 = Video.create({title: 'my ninth video', url:'https://www.youtube.com/watch?v=-etNtlr576E', uid: uuid.generate})
 
 larry.videos << [video1, video2, video3]
 curly.videos << [video4, video5, video6]
