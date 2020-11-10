@@ -12,7 +12,7 @@ larry = User.create({username: 'Larry', email: 'larry@stooges.com', password: 'l
 curly = User.create({username: 'Curly', email: 'curly@stooges.com', password: 'curly', uid: uuid.generate})
 moe = User.create({username: 'moe', email: 'moe@stooges.com', password: 'moe', uid: uuid.generate})
 
-video1 = Video.create({title: 'my first video', url:'https://youtu.be/j1pWzCLZSnc', uid: uuid.generate})
+video1 = Video.create({title: 'my first video', url:'https://www.youtube.com/watch?v=MhG2bVXTyHQ', uid: uuid.generate})
 video2 = Video.create({title: 'my second video', url:'https://youtu.be/a5r14_aXA4I', uid: uuid.generate})
 video3 = Video.create({title: 'my third video', url:'https://youtu.be/FkGK7bitav0', uid: uuid.generate})
 video4 = Video.create({title: 'my fourth video', url:'https://www.youtube.com/watch?v=LyC855KdBKo', uid: uuid.generate})

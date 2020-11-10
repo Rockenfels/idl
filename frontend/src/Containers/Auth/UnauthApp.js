@@ -50,7 +50,7 @@ import { getVideos } from '../../Reducers/manageVideos';
             </Route>
 
             <Route exact path="/videos/:video">
-              {this.props.getVideos()}
+              {/* {this.props.getVideos()} */}
               <VideoViewer videos={videos} />
             </Route>
 
