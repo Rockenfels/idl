@@ -12,7 +12,7 @@ function User (props) {
         <div className="user-container" >
             <h1>{user.username}</h1>
             <h2>{user.username}'s contributions: </h2>
-            <UserVideos userId={userId}/>
+            <UserVideos userId={userId} user={user}/>
         </div>
     )
 }

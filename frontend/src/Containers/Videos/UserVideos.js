@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 
 class UserVideos extends Component{
     render(){
-        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.userId);
+        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.id);
         debugger;
         return(
             <div>
