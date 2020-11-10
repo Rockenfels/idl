@@ -8,14 +8,20 @@ class Login extends Component {
 
     handleLogin = (e) => {
         e.preventDefault();
-        sendLogin({username: e.target.username.value, password: e.target.username.value})
+        sendLogin({username: e.target.username.value, 
+            password: e.target.username.value 
+        })
             .then(this.props.user.accepted === true ? <Redirect to="/"/> : window.alert("There was a problem, make sure your info is correct and try again."));
     }
 
     handleSignup = (e) => {
         e.preventDefault();
-        sendSignup({username: e.target.username.value, password: e.target.username.value, uuid: uuid()})
-            .then(this.props.user.accepted === true ? window.alert("Account created, please sign in.") : window.alert('There was a problem with your info, please try something else.'))
+        sendSignup({username: e.target.username.value, 
+            email: e.target.email.value,
+            password: e.target.password.value,
+            password_confirmation: e.target.password_confirmation.value, 
+            uuid: uuid()})
+            .then(this.props.user.accepted === true ? window.alert("Account created, please sign in.") : window.alert('There was a problem with your info, please try again.'))
     }
 
     render() {
@@ -23,15 +29,23 @@ class Login extends Component {
             <div className="login">
                 <h1>Login Below:</h1>
                 <form onSubmit={this.handleLogin}>
+                    <label for="username">Username: </label>
                     <input type="text" name="username" />
+                    <label for="password">Password: </label>
                     <input type="text" name="password" />
                     <input type="submit" value="Login" />
                 </form>
                 <h2>Or</h2>
                 <h1>Signup:</h1>
                 <form onSubmit={this.handleSignup}>
+                    <label for="username">Username: </label>
                     <input type="text" name="username" />
-                    <input type="text" name="password" />
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" />
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" />
+                    <label for="password-confirmation">Confirm Password: </label>
+                    <input type="password" name="password-confirmation" />
                     <input type="submit" value="Login" />
                 </form>
             </div>
