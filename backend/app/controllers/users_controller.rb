@@ -53,14 +53,14 @@ class UsersController < ApplicationController
     def login
         user = User.find_by(username: params[:username])
         if user != nil && user.password === params[:password]
-            render json: {message: 'User Found'}
+            render json: {message: 'User Found', user: user}
         end
     end
 
     def edit
         user = User.find_by(username: params[:username])
         if user != nil && user.update(user_params)
-            render json: {message: 'Edits Made'}
+            render json: {message: 'User Updated'}
         end
     end
 

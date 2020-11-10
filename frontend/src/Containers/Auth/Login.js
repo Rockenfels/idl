@@ -11,7 +11,14 @@ class Login extends Component {
         sendLogin({username: e.target.username.value, 
             password: e.target.username.value 
         })
-            .then(this.props.user.accepted === true ? <Redirect to="/"/> : window.alert("There was a problem, make sure your info is correct and try again."));
+            .then(() => {
+                if(this.props.user.accepted === true){
+                    <Redirect to="/account"/>
+                }
+                else{
+                    window.alert("There was a problem, make sure your info is correct and try again.");
+                }
+            })
     }
 
     handleSignup = (e) => {

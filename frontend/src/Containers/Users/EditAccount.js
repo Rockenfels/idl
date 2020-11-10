@@ -20,14 +20,21 @@ class EditAccount extends Component {
         e.preventDefault()
         const { sendEdit } = this.props;
         let updates = {
-            uid: this.props.user.uid,
             email: this.state.email, 
             password: this.state.password
         }       
-        sendEdit(updates);
+        sendEdit(updates)
+            .then(() => {
+                if(this.props.user.accepted === true){
+                    window.alert('Edits successful');
+                    e.target.email.value = "";
+                    e.target.password.value = "";
+                }
+                else {
+                    window.alert('Invalid update, try again.')
+                }
+            }); 
     }
-
-    
 
     render(){
         
@@ -42,4 +49,8 @@ class EditAccount extends Component {
         );
     }
 }
-export default connect(null, {sendEdit})(EditAccount);
+
+const mapStateToProps = (state) => ({
+    user: state.user
+})
+export default connect(mapStateToProps, {sendEdit})(EditAccount);

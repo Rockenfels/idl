@@ -39,6 +39,7 @@ export const sendLogin = (user) => {
           fetch(url + "users/login", configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Found'){
                 dispatch(accepted);
+                window.localStorage.setItem( 'user', json.user)
                 dispatch(login(json.user));
               }
               else {
@@ -93,11 +94,9 @@ export const sendEdit = (user) => {
               if(json.message === 'User Updated'){
                   dispatch(editUser(user));
                   dispatch(accepted);
-                  window.alert('user updated, please sign in');
               }
               else{
                   dispatch(rejected);
-                  window.alert('Invalid data, edit and try again.');
               }
           });
     }
