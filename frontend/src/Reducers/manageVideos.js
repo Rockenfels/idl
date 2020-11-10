@@ -26,7 +26,8 @@ export const removeVideo = (video) => ({
 })
 
 export default function manageVideos(state={
-    videos: []
+    videos: [],
+    selectedVid: null
     }, action){
 
     //consider aDding a logic statement to validate current video to both cases
@@ -35,7 +36,7 @@ export default function manageVideos(state={
             action.video.uid = uuid();
             return {...state, videos:[...state.videos, action.video]}
         case 'POP_VIDEOS':
-            return {videos: action.videos}
+            return {...state, videos: action.videos}
         case 'REMOVE_VIDEO':
             return {...state, videos: state.videos.filter(item => item.uid !== action.video.uid)}
         default:

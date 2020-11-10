@@ -24,7 +24,6 @@ import { getVideos } from '../../Reducers/manageVideos';
   render(){
       let { users } = this.props.users;
       let { videos } = this.props.videos;
-      debugger;
       return(
           <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />
@@ -50,9 +49,10 @@ import { getVideos } from '../../Reducers/manageVideos';
               <AllVideos videos={videos} />
             </Route>
 
-            <Route exact path="/videos/:video" render={(routerProps) => {
-                <VideoViewer video={videos.find(target => target.uid === routerProps.match.params.video)} />
-            }}/>
+            <Route exact path="/videos/:video">
+              {this.props.getVideos()}
+              <VideoViewer videos={videos} />
+            </Route>
 
             <Route exact path='/login'>
                 <Login />
