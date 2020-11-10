@@ -8,21 +8,23 @@ import UnauthNavBar from '../../Components/Display/UnauthNavBar';
 import Home from '../../Components/Display/Home';
 import AllUsers from '../Users/AllUsers';
 import User from '../../Components/Users/User';
-import AllVideos from '../Videos/AllVideos';
+import AllVideos from '../../Components/Videos/AllVideos';
 import VideoViewer from '../../Components/Videos/VideoViewer';
 import NoMatch from '../../Components/Display/NoMatch';
 import Footer from '../../Components/Display/Footer'; 
 import Login from './Login';
 import { getUsers } from '../../Reducers/manageUsers';
-
+import { getVideos } from '../../Reducers/manageVideos';
  class UnauthApp extends Component{
   componentDidMount(){
     this.props.getUsers();
+    this.props.getVideos();
   }
 
   render(){
       let { users } = this.props.users;
       let { videos } = this.props.videos;
+      debugger;
       return(
           <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />
@@ -70,4 +72,4 @@ const mapStateToProps = (state) => ({
     videos: state.videos,
     users: state.users
 })
-export default connect(mapStateToProps,{login, getUsers})(UnauthApp)
+export default connect(mapStateToProps,{login, getUsers, getVideos})(UnauthApp)

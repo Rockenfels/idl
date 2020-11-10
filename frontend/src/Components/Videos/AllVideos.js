@@ -1,6 +1,6 @@
 import React from 'react';
-import VideoList from '../../Components/Videos/VideoList'
-import VideoViewer from '../../Components/Videos/VideoViewer'
+import VideoList from './VideoList'
+import VideoViewer from './VideoViewer'
 import { Route } from 'react-router-dom';
 const AllVideos = (props) => {
     return (
