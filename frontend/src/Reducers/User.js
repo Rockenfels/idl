@@ -37,7 +37,13 @@ export const sendLogin = (user) => {
           };
       
           fetch(url + "users/login", configObj).then(response => response.json()).then(json => {
-              json.message === 'User Found' ? dispatch(login(json.user)) : dispatch(rejected);
+              if(json.message === 'User Found'){
+                dispatch(accepted);
+                dispatch(login(json.user));
+              }
+              else {
+                dispatch(rejected);
+              }
           });
     }
 }
@@ -58,7 +64,12 @@ export const sendSignup = (user) => {
           };
       
           fetch(url + "users/signup", configObj).then(response => response.json()).then(json => {
-              json.message === 'User Created' ? window.alert('user created, please sign in') : window.alert('Invalid data or user already exists. Try again.');
+              if(json.message === 'User Created'){
+                dispatch(accepted);
+            }
+               else {
+                dispatch(rejected);
+            }
           });
     }
 }

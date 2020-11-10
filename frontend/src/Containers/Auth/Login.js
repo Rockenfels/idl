@@ -2,17 +2,20 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendLogin, sendSignup } from '../../Reducers/user';
 import { v4 as uuid } from 'uuid';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
     handleLogin = (e) => {
         e.preventDefault();
         sendLogin({username: e.target.username.value, password: e.target.username.value})
+            .then(this.props.user.accepted === true ? <Redirect to="/"/> : window.alert("There was a problem, make sure your info is correct and try again."));
     }
 
     handleSignup = (e) => {
         e.preventDefault();
-        sendSignup({username: e.target.username.value, password: e.target.username.value, uuid: uuid()});
+        sendSignup({username: e.target.username.value, password: e.target.username.value, uuid: uuid()})
+            .then(this.props.user.accepted === true ? window.alert("Account created, please sign in.") : window.alert('There was a problem with your info, please try something else.'))
     }
 
     render() {
@@ -36,4 +39,7 @@ class Login extends Component {
     }
 
 }
-export default connect(null, {sendLogin, sendSignup})(Login);
+const mapStateToProps = (state) => ({
+    user: state.user
+})
+export default connect(mapStateToProps, {sendLogin, sendSignup})(Login);
