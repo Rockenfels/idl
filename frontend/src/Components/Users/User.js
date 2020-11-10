@@ -16,7 +16,4 @@ function User (props) {
         </div>
     )
 }
-const mapStateToProps = (state) => ({
-    user: state.user
-})
-export default connect(mapStateToProps)(User);
+export default User;
