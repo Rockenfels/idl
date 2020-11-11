@@ -8,11 +8,10 @@ class App extends Component {
   componentDidMount(){
     let user = JSON.parse(window.localStorage.getItem('user'));
     if(user !== undefined){
-      login(user);
+    this.props.login(user);
     }
   }
   render(){
-    
     return (
     <>
       {this.props.user.user !== undefined ? 

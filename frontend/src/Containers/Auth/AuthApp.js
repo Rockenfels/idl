@@ -13,55 +13,62 @@ import VideoViewer from '../../Components/Videos/VideoViewer';
 import NoMatch from '../../Components/Display/NoMatch';
 import Account from '../Users/Account'
 import Footer from '../../Components/Display/Footer'; 
+import { getUsers } from '../../Reducers/manageUsers';
+import { getVideos } from '../../Reducers/manageVideos';
 
 class AuthApp extends Component{
-    render(){
-      
-        return(
-            <div className="auth-app">
-            <AuthNavBar logout={this.props.logout} />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
+  componentDidMount(){
+    this.props.getUsers();
+    this.props.getVideos();
+  }
+  render(){
+    
+    return(
+        <div className="auth-app">
+        <AuthNavBar logout={this.props.logout} />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-              <Route path="/users"render={(routerProps) => {
-                <div id="auth-users">
-                  <AllUsers {...routerProps} />
-                  <Route path={`/users/:userId`} render={(routerProps) => 
-                      <User match={routerProps.match} user={this.props.users.find(user => user.uid === routerProps.match.params.userId)} />}
-                  />
-                </div>
-              }}/>
-
-              <Route path={`/users/:userId`} render={(routerProps) => 
-                      <User match={routerProps.match} user={this.props.users.find(user => user.uid === routerProps.match.params.userId)} />}
-              />
-
-              <Route path="/videos" render={(routerProps) => {
-                <AllVideos match={routerProps.match} />
-              }}/>
-
-              <Route path="/videos/:video" render={(routerProps) => {
-                  <VideoViewer video={this.props.videos.find(target => target.uid === routerProps.match.params.video)} />
-              }}/>
-
-              <Route path='/account'>
-                  <Account />
-              </Route>
-
-              <Route>
-                <NoMatch />
-              </Route>
-            </Switch>
-            <Footer />
+          <Route path="/users">
+          <div id="auth-users">
+            <AllUsers users={this.props.users} />
+            <Route exact path="/users/:userId" >
+              <User users={users} />
+            </Route>
           </div>
-        )
-    }
+        </Route>
+
+        <Route exact path="/users/:userId" >
+          <User users={users} />
+        </Route>
+
+        <Route path={`/videos`} >
+          <AllVideos videos={videos} />
+        </Route>
+
+        <Route exact path="/videos/:video">
+
+          <VideoViewer videos={videos} />
+        </Route>
+
+          <Route path='/account'>
+              <Account />
+          </Route>
+
+          <Route>
+            <NoMatch />
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => ({
     videos: state.videos,
     users: state.users
 })
-export default connect(mapStateToProps,{logout})(AuthApp)
+export default connect(mapStateToProps,{logout, getUsers, getVideos})(AuthApp)
