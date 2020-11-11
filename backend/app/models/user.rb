@@ -3,6 +3,5 @@ class User < ApplicationRecord
     has_many :videos
 
     validates :username, :email, uniqueness: true
-    
 
 end

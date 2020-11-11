@@ -23,17 +23,17 @@ class EditAccount extends Component {
             email: this.state.email, 
             password: this.state.password
         }       
-        sendEdit(updates)
-            .then(() => {
-                if(this.props.user.accepted === true){
-                    window.alert('Edits successful');
-                    e.target.email.value = "";
-                    e.target.password.value = "";
-                }
-                else {
-                    window.alert('Invalid update, try again.')
-                }
-            }); 
+        sendEdit(updates);
+        setTimeout(() => {
+            if(this.props.user.accepted === true){
+                window.alert('Edits successful');
+                e.target.email.value = "";
+                e.target.password.value = "";
+            }
+            else {
+                window.alert('Invalid update, try again.')
+            }
+        }, 5000); 
     }
 
     render(){

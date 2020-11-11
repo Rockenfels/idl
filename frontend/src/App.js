@@ -7,9 +7,12 @@ import { login } from './Reducers/user';
 class App extends Component {
   componentDidMount(){
     let user = window.localStorage.getItem('user');
-    user !== undefined ? this.props.login(user): null;
+    if(user !== undefined){
+      login(user);
+    }
   }
   render(){
+    
     return (
     <>
       {this.props.user.user !== undefined ? 

@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/';
+const url = 'http://localhost:3001/';
 
 export const login = (user) => ({
     type: 'LOGIN',
@@ -34,9 +34,10 @@ export const sendLogin = (user) => {
               "Accept": "application/json"
             },
             body: JSON.stringify(formData)
-          };
-      
+          }
+
           fetch(url + "users/login", configObj).then(response => response.json()).then(json => {
+              debugger;
               if(json.message === 'User Found'){
                 dispatch(accepted);
                 window.localStorage.setItem( 'user', json.user)
