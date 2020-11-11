@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PersonalVideos from '../Videos/PersonalVideos';
 import EditAccount from './EditAccount';
 import { Link, Route } from 'react-router-dom';
+import AddVideo from '../Videos/AddVideo';
 
 class Account extends Component {
 
@@ -15,7 +16,11 @@ class Account extends Component {
                 <div id='edit-form-container'>
                     <Link to='/account/edit'>Edit Account</Link>
                     <Route path='/account/edit' >
-                        <EditAccount id='edit' user={user} style={{display: 'none'}}/>
+                        <EditAccount id='edit' user={user} />
+                    </Route>
+                    <Link to='account/add'>New Video</Link>
+                    <Route path='/account/add' >
+                        <AddVideo id='add' />
                     </Route>
                 </div>
             </div>
