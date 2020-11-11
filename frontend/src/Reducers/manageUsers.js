@@ -31,10 +31,6 @@ function manageUsers(state={
     }, action){
 
     switch(action.type){
-        case 'LOGIN':
-            return {...state, currentUserId: action.user.id}
-        case 'LOGOUT':
-            return {...state, currentUserId: null}
         case 'ADD_USER':
             action.user.uid = uuid();
             return {...state, users:[...state.users, action.user]}

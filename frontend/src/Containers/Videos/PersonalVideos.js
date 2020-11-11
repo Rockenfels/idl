@@ -7,10 +7,10 @@ import VideoViewer from '../../Components/Videos/VideoViewer';
 
 class PersonalVideos extends Component{
     render(){
-        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.id);
+        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.user.id)
         return(
             <div>
-                <PersonalVideoList videos={myVids} removeVideo={this.props.removeVideo} />
+                <PersonalVideoList videos={myVids} />
                 <Route path={`/videos/:videoId`} render={(routerProps) => 
                     <VideoViewer video={myVids.filter(video => video.uid === routerProps.match.params.videoId)} />}
                 />

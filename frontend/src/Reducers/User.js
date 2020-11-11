@@ -1,4 +1,4 @@
-const url = 'http://localhost:3001/';
+const url = 'http://localhost:3001/users/';
 
 export const login = (user) => ({
     type: 'LOGIN',
@@ -7,19 +7,19 @@ export const login = (user) => ({
 
 export const logout = () => ({
     type: 'LOGOUT'
-}) 
+}); 
 
 export const pending = () => ({
     type: 'PENDING'
-})
+});
 
 export const rejected = () => ({
     type: 'REJECTED'
-})
+});
 
 export const accepted = () => ({
     type: 'ACCEPTED'
-})
+});
 
 export const sendLogin = (user) => {
     return (dispatch) => {
@@ -36,8 +36,7 @@ export const sendLogin = (user) => {
             body: JSON.stringify(formData)
           }
 
-          fetch(url + "users/login", configObj).then(response => response.json()).then(json => {
-              debugger;
+          fetch(url + "login", configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Found'){
                 dispatch(accepted);
                 window.localStorage.setItem( 'user', JSON.stringify(json.user))
@@ -65,7 +64,7 @@ export const sendSignup = (user) => {
             body: JSON.stringify(formData)
           };
       
-          fetch(url + "users/signup", configObj).then(response => response.json()).then(json => {
+          fetch(url + "signup", configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Created'){
                 dispatch(accepted);
             }
@@ -91,7 +90,7 @@ export const sendEdit = (user) => {
             body: JSON.stringify(formData)
           };
       
-          fetch(url + "users/edit", configObj).then(response => response.json()).then(json => {
+          fetch(url + "edit", configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Updated'){
                   dispatch(editUser(user));
                   dispatch(accepted);
@@ -108,7 +107,13 @@ export const editUser = (user) => ({
     user
 })
 
-export default function user(state={user: undefined, pending: false, accepted: false, rejected: false}, action){
+export default function user(state={
+    user: undefined, 
+    pending: false, 
+    accepted: false, 
+    rejected: false
+}, action){
+
     switch(action.type){
         case 'LOGIN':
             return {user: action.user, accepted: true, pending: false, rejected: false};
