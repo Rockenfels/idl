@@ -9,7 +9,7 @@ class PersonalVideos extends Component{
         let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.user.id);
         return(
             <div>
-                <PersonalVideoList myVideos={myVids} videos={this.props.videos}/>
+                <PersonalVideoList myVideos={myVids} />
                 <Route path={`/videos/:videoId`} render={(routerProps) => 
                     <VideoViewer video={myVids.filter(video => video.uid === routerProps.match.params.videoId)} />}
                 />

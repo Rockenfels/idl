@@ -9,16 +9,6 @@ function PersonalVideoList(props) {
 
     const handleRemove = (e) => {
         dispatch(sendRemoveVideo(e.target.name));
-        debugger;
-        setTimeout(() => {
-            debugger;
-            if(props.videos.accepted){
-                window.alert('Video Removed');
-            }
-            else{
-                window.alert('There was a problem, please try again or send us an email.')
-            }
-        }, 2000)
     }
 
    const renderVideos = () => {

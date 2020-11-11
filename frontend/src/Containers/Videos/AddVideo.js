@@ -20,7 +20,6 @@ function AddVideo(){
         dispatch(sendAddVideo(newVid));
         setTimeout(() => {
             if(user.accepted){
-                window.alert("Video Added");
                 document.getElementById('video-url').value = "";
                 history.push('/account');
             }

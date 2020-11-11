@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 
 function VideoViewer({ videos }){
     let { videoId } = useParams();
-    let video = videos.find(video => video.uid === videoId);
+    let video = videos.videos.find(video => video.uid === videoId);
     return (
         <div id='unauth-viewer'>
             <h2>{video.title}</h2>

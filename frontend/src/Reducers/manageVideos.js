@@ -96,11 +96,11 @@ export default function manageVideos(state={
 
     switch(action.type){
         case 'ADD_VIDEO':
-            return {videos:[...state.videos, action.video]}
+            return {...state, videos:[...state.videos, action.video]}
         case 'POP_VIDEOS':
-            return {videos: action.videos}
+            return {...state, videos: action.videos}
         case 'REMOVE_VIDEO':
-            return {videos: state.videos.filter(item => item.uid !== action.videoId)}
+            return {...state, videos: state.videos.filter(item => item.uid !== action.videoId)}
         case 'ACCEPTED':
             return {...state, accepted: true, rejected: false, pending: false}
         case 'PENDING':

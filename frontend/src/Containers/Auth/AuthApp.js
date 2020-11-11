@@ -42,7 +42,7 @@ class AuthApp extends Component{
         </Route>
 
         <Route path="/users/:userId" >
-          <User users={users} />
+          <User />
         </Route>
 
         <Route path={`/videos`} >
