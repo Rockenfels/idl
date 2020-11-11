@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import UserVideos from '../../Containers/Videos/UserVideos';
 import { useParams } from 'react-router-dom';
 

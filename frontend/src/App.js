@@ -6,7 +6,7 @@ import { login } from './Reducers/user';
 
 class App extends Component {
   componentDidMount(){
-    let user = window.localStorage.getItem('user');
+    let user = JSON.parse(window.localStorage.getItem('user'));
     if(user !== undefined){
       login(user);
     }

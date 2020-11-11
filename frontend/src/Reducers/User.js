@@ -40,7 +40,7 @@ export const sendLogin = (user) => {
               debugger;
               if(json.message === 'User Found'){
                 dispatch(accepted);
-                window.localStorage.setItem( 'user', json.user)
+                window.localStorage.setItem( 'user', JSON.stringify(json.user))
                 dispatch(login(json.user));
               }
               else {
@@ -113,7 +113,8 @@ export default function user(state={user: undefined, pending: false, accepted: f
         case 'LOGIN':
             return {user: action.user, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
-            return {...state, user: null}
+            window.localStorage.setItem('user', undefined);
+            return {...state, user: undefined}
         case 'ACCEPTED':
             return {...state, accepted: true, rejected: false, pending: false}
         case 'PENDING':
