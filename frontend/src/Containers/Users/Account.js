@@ -20,7 +20,7 @@ class Account extends Component {
                     </Route>
                     <Link to='account/add'>New Video</Link>
                     <Route path='/account/add' >
-                        <AddVideo id='add' user={user} />
+                        <AddVideo id='add' />
                     </Route>
                 </div>
             </div>

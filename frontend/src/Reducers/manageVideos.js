@@ -49,7 +49,6 @@ export const sendRemoveVideo = (videoId) => {
           }
 
         fetch(url + videoId, configObj).then(response => response.json()).then(json => {
-            debugger;
             if(json.message === 'Video Removed'){
             dispatch(accepted);
             dispatch(removeVideo(videoId));
@@ -77,7 +76,6 @@ export const sendAddVideo = (video) => {
           }
 
         fetch(url, configObj).then(response => response.json()).then(json => {
-            debugger;
             if(json.message === 'Video Created'){
             dispatch(accepted);
             dispatch(addVideo(json.video));
@@ -102,7 +100,6 @@ export default function manageVideos(state={
         case 'POP_VIDEOS':
             return {videos: action.videos}
         case 'REMOVE_VIDEO':
-            debugger;
             return {videos: state.videos.filter(item => item.uid !== action.videoId)}
         case 'ACCEPTED':
             return {...state, accepted: true, rejected: false, pending: false}

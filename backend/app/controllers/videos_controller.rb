@@ -1,5 +1,4 @@
 require 'uuid'
-require 'pry'
 class VideosController < ApplicationController
     def index
         videos = Video.all()
@@ -10,7 +9,6 @@ class VideosController < ApplicationController
         video = Video.new(video_params)
         uid = UUID.new
         video.uid = uid.generate
-        binding.pry()
         if video.save
             render json: {message: "Video Created", video: video, except: [:updated_at, :user_id]}
         end
@@ -18,7 +16,6 @@ class VideosController < ApplicationController
 
     def destroy
         video = Video.find_by('uid': params[:id])
-        binding.pry();
         if !video.nil?
             video.destroy
             render json: {message: 'Video Removed'}
@@ -28,6 +25,6 @@ class VideosController < ApplicationController
     private
 
     def video_params
-        params.require(:video).permit(:title, :url)
+        params.require(:video).permit(:title, :url, :user_id)
     end
 end

@@ -22,8 +22,8 @@ class AuthApp extends Component{
     this.props.getVideos();
   }
   render(){
-    let { users } = this.props.users;
-    let { videos } = this.props.videos;
+    let { users } = this.props;
+    let { videos } = this.props;
     return(
         <div className="auth-app">
         <AuthNavBar logout={this.props.logout} />
@@ -41,7 +41,7 @@ class AuthApp extends Component{
           </div>
         </Route>
 
-        <Route exact path="/users/:userId" >
+        <Route path="/users/:userId" >
           <User users={users} />
         </Route>
 
@@ -49,7 +49,7 @@ class AuthApp extends Component{
           <AllVideos videos={videos} />
         </Route>
 
-        <Route exact path="/videos/:video">
+        <Route path="/videos/:video">
 
           <VideoViewer videos={videos} />
         </Route>
