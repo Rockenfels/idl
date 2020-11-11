@@ -1,3 +1,5 @@
+require 'uuid'
+require 'pry'
 class VideosController < ApplicationController
     def index
         videos = Video.all()
@@ -6,47 +8,26 @@ class VideosController < ApplicationController
 
     def create
         video = Video.new(video_params)
-        #add code to include user id upon creation
-
+        uid = UUID.new
+        video.uid = uid.generate
+        binding.pry()
         if video.save
-            render json: video, except: [:updated_at, :user_id]
-        else
-            render json: {status: "error", errors: [video.errors.full_messages]}
-        end
-    end
-
-    def show
-        video = Video.find_by('id': params[:id])
-        if !video.nil? 
-            render json: video, except: [:updated_at, :user_id]
-        else
-            render json: {message: 'video not found'}
-        end
-    end
-
-    def update
-        video = Video.find_by('id': params[:id])
-        if !video.empty?
-            video.update(video_params)
-            render json: video, except: [:updated_at, :user_id]
-        else
-            render json: {message: "error - invalid video data"}
+            render json: {message: "Video Created", video: video, except: [:updated_at, :user_id]}
         end
     end
 
     def destroy
-        video = Video.find_by('id': params[:id])
+        video = Video.find_by('uid': params[:id])
+        binding.pry();
         if !video.nil?
             video.destroy
-            render json: {message: 'video successfully deleted'}
-        else
-            render json: {message: 'couldn\'t find video'}
+            render json: {message: 'Video Removed'}
         end
     end
 
     private
 
     def video_params
-        params.require(:video).permit(:title, :email, :password)
+        params.require(:video).permit(:title, :url)
     end
 end

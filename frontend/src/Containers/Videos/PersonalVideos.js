@@ -7,7 +7,7 @@ import VideoViewer from '../../Components/Videos/VideoViewer';
 
 class PersonalVideos extends Component{
     render(){
-        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.user.id)
+        let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.user.id);
         return(
             <div>
                 <PersonalVideoList videos={myVids} />

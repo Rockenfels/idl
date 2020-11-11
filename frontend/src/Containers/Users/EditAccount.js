@@ -18,12 +18,15 @@ class EditAccount extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { sendEdit } = this.props;
-        let updates = {
+        const { sendEdit, user } = this.props;
+        let userUpdates = {
+            username: user.username,
+            uid: user.uid,
+            id: user.id,
             email: this.state.email, 
             password: this.state.password
         }       
-        sendEdit(updates);
+        sendEdit(userUpdates);
         setTimeout(() => {
             if(this.props.user.accepted === true){
                 window.alert('Edits successful');

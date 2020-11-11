@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :videos, except: [:new, :edit]
-  resources :users, except: [:new, :edit]
+  resources :videos, only: [:index, :create, :destroy]
+  resources :users, except: [:new, :edit, :show]
 
   post '/users/signup', to: 'users#signup';
   post '/users/login', to: 'users#login';

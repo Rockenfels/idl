@@ -90,7 +90,7 @@ export const sendEdit = (user) => {
             body: JSON.stringify(formData)
           };
       
-          fetch(url + "edit", configObj).then(response => response.json()).then(json => {
+          fetch(url + user.id, configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Updated'){
                   dispatch(editUser(user));
                   dispatch(accepted);

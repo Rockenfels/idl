@@ -6,7 +6,13 @@ import { Redirect } from 'react-router-dom';
 class AddVideo extends Component {
     handleSubmit(e){
         e.preventDefault();
-        let newVid = document.getElementById('video-url').value;
+        let newUrl = document.getElementById('video-url').value;
+        let newTitle = document.getElementById('video-title').value;
+        let newVid = {
+            url: newUrl,
+            title: newTitle,
+            user_id: this.pros.user.id
+        }
         debugger;
         this.props.sendAddVideo(newVid);
         setTimeout(() => {
@@ -22,7 +28,9 @@ class AddVideo extends Component {
     render(){
         return (
             <form id='add-video' onSubmit={this.handleSubmit}>
-                <label for="video-url">Your Video URL: </label>
+                <label for="video-title">Video Title: </label>
+                <input id="video-title" type="text" />
+                <label for="video-url">Video URL: </label>
                 <input id="video-url" name="video-url" type="text" />
                 <input name="submit" type="submit" value="Add Video" />
             </form>
