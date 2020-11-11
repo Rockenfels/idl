@@ -4,18 +4,18 @@ import PersonalVideos from '../Videos/PersonalVideos';
 import EditAccount from './EditAccount';
 import { Link, Route } from 'react-router-dom';
 
-
 class Account extends Component {
 
     render(){    
+        let { user, videos } = this.props;
         return (
             <div id='account' className='account'>
                 <h2>Your Contributions:</h2>
-                <PersonalVideos user={this.props.user} />
+                <PersonalVideos user={user} videos={videos}/>
                 <div id='edit-form-container'>
                     <Link to='/account/edit'>Edit Account</Link>
                     <Route path='/account/edit' >
-                        <EditAccount id='edit' user={this.props.user} style={{display: 'none'}}/>
+                        <EditAccount id='edit' user={user} style={{display: 'none'}}/>
                     </Route>
                 </div>
             </div>

@@ -10,9 +10,9 @@ class PersonalVideos extends Component{
         let myVids = this.props.videos.videos.filter(video => video.user_id === this.props.user.id);
         return(
             <div>
-                <PersonalVideoList handleClick={this.handleClick} videos={myVids} removeVideo={this.props.removeVideo} />
-                <Route path={`/videos/:videoId`} render={() => 
-                    <VideoViewer video={myVids[this.props.match.params.videoId]} />}
+                <PersonalVideoList videos={myVids} removeVideo={this.props.removeVideo} />
+                <Route path={`/videos/:videoId`} render={(routerProps) => 
+                    <VideoViewer video={myVids.filter(video => video.uid === routerProps.match.params.videoId)} />}
                 />
             </div>
         )
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => ({
   videos: state.videos  
 })
 
-export default connect(mapStateToProps, {removeVideo})(PersonalVideos);
+export default connect(mapStateToProps)(PersonalVideos);
