@@ -115,6 +115,7 @@ export default function user(state={
 
     switch(action.type){
         case 'LOGIN':
+            debugger;
             return {user: action.user, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
             window.localStorage.removeItem('user');

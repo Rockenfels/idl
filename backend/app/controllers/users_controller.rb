@@ -15,8 +15,13 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = User.find_by(username: params[:username])
-        if user != nil && user.update(user_params)
+        user = User.find_by(username: params[:user][:username])
+        user.email = params[:user][:email]
+
+        if params[:user][:password] != ""
+            user.password = params[:user][:password]
+        end
+        if user != nil && user.save
             render json: {message: 'User Updated'}
         end
     end
