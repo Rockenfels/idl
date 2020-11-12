@@ -3,7 +3,7 @@ import UserVideos from '../../Containers/Videos/UserVideos';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function User (props) {
+function User () {
     
     let { userId } = useParams();
     let users = useSelector(state => state.users);

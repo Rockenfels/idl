@@ -6,7 +6,7 @@ const AllVideos = (props) => {
     return (
         <div id='unauth-videos'>
             <h2>Pick something to keep you busy:</h2>
-            <VideoList videos={props.videos} />
+            <VideoList videos={props.videos.videos} />
 
             <Route path={`/videos/:videoId`}>
              <VideoViewer videos={props.videos} />

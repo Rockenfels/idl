@@ -22,8 +22,8 @@ import { getVideos } from '../../Reducers/manageVideos';
   }
 
   render(){
-      let { users } = this.props.users;
-      let { videos } = this.props.videos;
+      let { users } = this.props;
+      let { videos } = this.props;
       return(
           <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />

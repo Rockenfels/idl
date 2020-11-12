@@ -1,8 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 
-const AuthNavBar = ({ logout }) => {
+function AuthNavBar({ logout }) {
+    const history = useHistory();
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        logout();
+        history.push('/');
+    } 
+
     return(
         <nav>
             <NavLink exact to='/' className="item">
@@ -11,7 +19,7 @@ const AuthNavBar = ({ logout }) => {
             <NavLink exact to="/videos" className="item">Videos</NavLink>
             <NavLink exact to='/users' className="item">Users</NavLink>
             <NavLink exact to='/account' className="item">My Account</NavLink>
-            <button onClick={logout}>Logout</button>
+            <button onClick={handleClick}>Logout</button>
         </nav>  
     )
 }

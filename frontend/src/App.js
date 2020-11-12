@@ -6,15 +6,15 @@ import { login } from './Reducers/user';
 
 class App extends Component {
   componentDidMount(){
-    let user = JSON.parse(window.localStorage.getItem('user'));
-    if(user !== undefined){
+    let user = window.localStorage.getItem('user');
+    if(user !== null){
     this.props.login(user);
     }
   }
   render(){
     return (
     <>
-      {this.props.user.user !== undefined ? 
+      {window.localStorage.getItem('user') !== null ? 
         <AuthApp /> : 
         <UnauthApp/>}
     </>

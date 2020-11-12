@@ -6,7 +6,7 @@ class EditAccount extends Component {
     constructor(props){
         super(props)
         this.state = {
-            email: this.props.user.email,
+            email: this.props.user.user.email,
             password: ""
         }
     }

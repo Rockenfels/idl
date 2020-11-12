@@ -37,8 +37,7 @@ export const sendLogin = (user) => {
           }
 
           fetch(url + "login", configObj).then(response => response.json()).then(json => {
-              if(json.message === 'User Found'){
-                dispatch(accepted);
+            if(json.message === 'User Found'){
                 window.localStorage.setItem( 'user', JSON.stringify(json.user))
                 dispatch(login(json.user));
               }
@@ -108,7 +107,7 @@ export const editUser = (user) => ({
 })
 
 export default function user(state={
-    user: undefined, 
+    user: null, 
     pending: false, 
     accepted: false, 
     rejected: false
@@ -118,8 +117,8 @@ export default function user(state={
         case 'LOGIN':
             return {user: action.user, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
-            window.localStorage.setItem('user', undefined);
-            return {...state, user: undefined}
+            window.localStorage.removeItem('user');
+            return {...state, user: undefined, accepted: true}
         case 'ACCEPTED':
             return {...state, accepted: true, rejected: false, pending: false}
         case 'PENDING':
