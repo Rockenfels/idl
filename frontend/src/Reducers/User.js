@@ -39,6 +39,7 @@ export const sendLogin = (user) => {
           fetch(url + "login", configObj).then(response => response.json()).then(json => {
             if(json.message === 'User Found'){
                 window.localStorage.setItem( 'user', JSON.stringify(json.user))
+                json.user.password = user.password
                 dispatch(login(json.user));
               }
               else {
@@ -115,7 +116,6 @@ export default function user(state={
 
     switch(action.type){
         case 'LOGIN':
-            debugger;
             return {user: action.user, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
             window.localStorage.removeItem('user');

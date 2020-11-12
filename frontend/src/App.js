@@ -8,7 +8,7 @@ class App extends Component {
   componentDidMount(){
     let user = window.localStorage.getItem('user');
     if(user !== null){
-    this.props.login(user);
+    this.props.login(JSON.parse(user));
     }
   }
   render(){

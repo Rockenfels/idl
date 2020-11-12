@@ -19,7 +19,6 @@ class EditAccount extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const { sendEdit, user } = this.props;
-        debugger;
         let userUpdates = {
             username: user.user.username,
             email: this.state.email, 
