@@ -8,7 +8,7 @@ const UnauthNavBar = () => {
                     <div className='row'>
                         <div className='col'>
                             <NavLink exact to='/' className="item">
-                                <img src="" alt="idl logo" />
+                                <img src="" className="img-thumbnail rounded" alt="idl logo" />
                             </NavLink>
                         </div>
                         <div className='col'>

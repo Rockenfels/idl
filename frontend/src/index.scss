@@ -1,0 +1,98 @@
+/* Color Theme Swatches in Hex */
+$Idl-1-hex: #476303;
+$Idl-2-hex: #232B0A;
+$Idl-3-hex: #3D5A10;
+$Idl-4-hex: #734002;
+$Idl-5-hex: #6B570A;
+
+/* Color Theme Swatches in RGBA */
+$Idl-1-rgba: rgba(70,98,3, .6);
+$Idl-2-rgba: rgba(35,42,10, .6);
+$Idl-3-rgba: rgba(61,89,15, .6);
+$Idl-4-rgba: rgba(114,63,1, .6);
+$Idl-5-rgba: rgba(107,86,10, .8);
+
+/* Color Theme Swatches in HSLA */
+$Idl-1-hsla: hsla(77, 94, 20, 1);
+$Idl-2-hsla: hsla(74, 62, 10, 1);
+$Idl-3-hsla: hsla(83, 69, 20, 1);
+$Idl-4-hsla: hsla(32, 96, 22, 1);
+$Idl-5-hsla: hsla(47, 82, 22, 1);
+
+body {
+  margin: 0;
+  font-family: 'Cabin', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url('./images/background.jpg');
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  color: gainsboro;
+}
+
+nav{
+  background-color: $Idl-4-rgba;
+  padding: 1%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.btn{
+  border-color: $Idl-2-hex;
+}
+
+.btn-primary{
+  background-color: $Idl-1-hex;
+}
+
+.btn.btn-primary:hover{
+  background-color: gray;
+}
+
+.btn-outline-primary{
+  border-color: $Idl-1-hex;
+  color: gainsboro;
+}
+
+.btn.btn-outline-primary:hover{
+  background-color: $Idl-1-rgba;
+  border-color: $Idl-2-hex;
+}
+
+.btn-secondary{
+  background-color: $Idl-3-hex;
+}
+
+.btn.btn-secondary:hover{
+  background-color: gray;
+}
+
+.btn.btn-dark:hover{
+  background-color: gray;
+}
+
+.card{
+  background-color:  $Idl-3-rgba;
+}
+
+.list-group{
+  width: 60%;
+  margin: auto;
+}
+
+.list-group-item{
+  background-color: $Idl-5-rgba;
+}
+
+#app{
+  background-color: $Idl-3-rgba;
+  border-radius: 3%;
+  padding-bottom: 2%;
+}

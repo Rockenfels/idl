@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { sendLogin, sendSignup } from '../../Reducers/user';
 import { v4 as uuid } from 'uuid';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
     const history = useHistory();
-    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     const handleLogin = (e) => {

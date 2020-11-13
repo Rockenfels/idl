@@ -14,7 +14,7 @@ function PersonalVideoList(props) {
    const renderVideos = () => {
         return props.myVideos.map(video => {
             return( 
-                <div className="video-item" key={video.uid}>
+                <div className="list-group-item" key={video.uid}>
                     <Link to={`/videos/${video.uid}`}>{video.title}</Link>
                     <button name={video.uid} onClick={handleRemove}>Remove Video</button>
                 </div>)
@@ -22,8 +22,10 @@ function PersonalVideoList(props) {
     }
     return(
         <div className="video-list">
-            <h1>Videos</h1>
-            {renderVideos()}  
+            <h3>Videos</h3>
+            <div className="list-group">
+            {renderVideos()}
+            </div>  
         </div>
     );
 }

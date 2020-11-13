@@ -13,11 +13,11 @@ class App extends Component {
   }
   render(){
     return (
-    <>
+    <div id="app" >
       {window.localStorage.getItem('user') !== null ? 
         <AuthApp className="container-fluid" /> : 
         <UnauthApp className="container-fluid"/>}
-    </>
+    </div>
     );
   }
 }
