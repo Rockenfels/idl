@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return(
-        <div>
+        <div id='welcome'>
             <h1>Welcome to Idl!</h1>
             <p>
                     The phrase "The devil makes work for idle hands to do" has been around for centuries, but
