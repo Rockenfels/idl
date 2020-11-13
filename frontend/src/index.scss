@@ -19,6 +19,11 @@ $Idl-3-hsla: hsla(83, 69, 20, 1);
 $Idl-4-hsla: hsla(32, 96, 22, 1);
 $Idl-5-hsla: hsla(47, 82, 22, 1);
 
+@mixin center{
+  width: 60%;
+  margin: auto;
+}
+
 body {
   margin: 0;
   font-family: 'Cabin', 'Segoe UI', 'Roboto', 'Oxygen',
@@ -61,6 +66,10 @@ code {
   color: gainsboro;
 }
 
+.btn.btn-primary.active{
+  background-color: $Idl-3-hex;
+}
+
 .btn.btn-outline-primary:hover{
   background-color: $Idl-1-rgba;
   border-color: $Idl-2-hex;
@@ -83,11 +92,19 @@ code {
 }
 
 .list-group{
-  width: 60%;
-  margin: auto;
+  @include center;
 }
 
 .list-group-item{
   background-color: $Idl-5-rgba;
+}
+
+.form-group{
+  @include center;
+  padding-bottom: 2%;
+}
+
+.login{
+  background-color: $Idl-3-rgba;
 }
 

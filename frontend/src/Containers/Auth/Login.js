@@ -54,24 +54,58 @@ function Login() {
         <div className="login">
             <h1 className="h1">Login Below:</h1>
             <form onSubmit={handleLogin}>
-                <label for="username">Username: </label>
-                <input type="text" name="username" />
-                <label for="password">Password: </label>
-                <input type="password" name="password" />
-                <input type="submit" value="Login" />
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label" for="username">Username: </label>
+                    <div class="col-sm-10">
+                        <input type="text" className="form-control" name="username" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label" for="password">Password: </label>
+                    <div class="col-sm-10">
+                        <input type="password" className="form-control" name="password" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <div class="col-sm-10">
+                        <input type="submit" className="btn btn-primary" value="Login" />
+                    </div>
+                </div>
             </form>
-            <h2 className="h2">Or</h2>
+            <br/>
+            <h2 className="h2">-Or-</h2>
             <h1 className="h1">Signup:</h1>
+            <br/>
             <form onSubmit={handleSignup}>
-                <label for="username">Username: </label>
-                <input id="signup-username" type="text" name="username" />
-                <label for="email">Email: </label>
-                <input id="signup-email" ype="text" name="email" />
-                <label for="password">Password: </label>
-                <input id="signup-password" type="password" name="password" />
-                <label for="password-confirmation">Confirm Password: </label>
-                <input id="signup-password-confirmation" type="password" name="password-confirmation" />
-                <input type="submit" value="Create Account" />
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label" for="username">Username: </label>
+                    <div class="col-sm-10">
+                        <input className="form-control" id="signup-username" type="text" name="username" />
+                    </div>
+                </div>
+                <div className="form-group row">  
+                    <label className="col-sm-2 col-form-label" for="email">Email: </label>
+                    <div class="col-sm-10">
+                        <input className="form-control" id="signup-email" type="text" name="email" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label" for="password">Password: </label>
+                    <div class="col-sm-10"> 
+                        <input className="form-control" id="signup-password" type="password" name="password" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label" for="password-confirmation">Confirm Password: </label>
+                    <div class="col-sm-10">   
+                        <input className="form-control" id="signup-password-confirmation" type="password" name="password-confirmation" />
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <div class="col-sm-10">
+                        <input className="form-control" type="submit" className="btn btn-primary" value="Create Account" />
+                    </div>
+                </div>
             </form>
         </div>
     )
