@@ -52,7 +52,7 @@ function Login() {
     
     return(
         <div className="login">
-            <h1>Login Below:</h1>
+            <h1 className="h1">Login Below:</h1>
             <form onSubmit={handleLogin}>
                 <label for="username">Username: </label>
                 <input type="text" name="username" />
@@ -60,8 +60,8 @@ function Login() {
                 <input type="password" name="password" />
                 <input type="submit" value="Login" />
             </form>
-            <h2>Or</h2>
-            <h1>Signup:</h1>
+            <h2 className="h2">Or</h2>
+            <h1 className="h1">Signup:</h1>
             <form onSubmit={handleSignup}>
                 <label for="username">Username: </label>
                 <input id="signup-username" type="text" name="username" />

@@ -11,7 +11,7 @@ class UserList extends Component {
     render(){
         return(
             <div className="user-list">
-                <h3>Users:</h3>
+                <h3 className="h3">Users:</h3>
                 <div className="list-group">
                 {this.renderUsers()}  
                 </div>

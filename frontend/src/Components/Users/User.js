@@ -11,8 +11,8 @@ function User () {
     
     return(
         <div className="user-container" >
-            <h1>{user.username}</h1>
-            <h2>{user.username}'s contributions: </h2>
+            <h2 className="h2">{user.username}</h2>
+            <h2 className="h2">{user.username}'s contributions: </h2>
             <UserVideos userId={userId} user={user}/>
         </div>
     )

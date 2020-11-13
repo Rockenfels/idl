@@ -24,11 +24,11 @@ class Account extends Component {
         return (
             <div id='account' className='account'>
                 <div id='account-info'>
-                    <h2> Your Info:</h2>
-                    <p>Username: {user.user !== null ? user.user.username : ""}</p>
-                    <p>Email: {user.user !== null ? user.user.email : ""}</p>
+                    <h2 className="h2"> Your Info:</h2>
+                    <p className="p">Username: {user.user !== null ? user.user.username : ""}</p>
+                    <p className="p">Email: {user.user !== null ? user.user.email : ""}</p>
                 </div>
-                <h2>Your Contributions:</h2>
+                <h2 className="h2">Your Contributions:</h2>
                 <PersonalVideos user={user} videos={videos}/>
                 <div id='edit-form-container'>
                     <Link to='/account/edit'>Edit Account</Link>

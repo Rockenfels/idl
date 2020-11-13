@@ -22,7 +22,7 @@ function PersonalVideoList(props) {
     }
     return(
         <div className="video-list">
-            <h3>Videos</h3>
+            <h3 className="h3">Videos</h3>
             <div className="list-group">
             {renderVideos()}
             </div>  
