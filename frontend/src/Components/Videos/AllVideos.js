@@ -4,17 +4,19 @@ import VideoViewer from './VideoViewer'
 import { Route } from 'react-router-dom';
 const AllVideos = (props) => {
     return (
-        <div id='unauth-videos'>
-            <h2 className="h2">Pick something to keep you busy:</h2>
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <VideoList videos={props.videos.videos} />
-                    </div>
-                    <div className="col-8">
-                        <Route path={`/videos/:videoId`}>
-                        <VideoViewer videos={props.videos} />
-                        </Route>
+        <div id='all-videos' className='card'>
+            <div className='card-body'>
+                <h2 className="h2">Pick something to keep you busy:</h2>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-4">
+                            <VideoList videos={props.videos.videos} />
+                        </div>
+                        <div className="col-8">
+                            <Route path={`/videos/:videoId`}>
+                            <VideoViewer videos={props.videos} />
+                            </Route>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -68,7 +68,7 @@ function Login() {
                 </div>
                 <div className="form-group row">
                     <div class="col-sm-10">
-                        <input type="submit" className="btn btn-primary" value="Login" />
+                        <input type="submit" className="form-control btn btn-primary" value="Login" />
                     </div>
                 </div>
             </form>
@@ -103,7 +103,7 @@ function Login() {
                 </div>
                 <div className="form-group row">
                     <div class="col-sm-10">
-                        <input className="form-control" type="submit" className="btn btn-primary" value="Create Account" />
+                        <input type="submit" className="form-control btn btn-primary" value="Create Account" />
                     </div>
                 </div>
             </form>

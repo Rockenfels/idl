@@ -23,19 +23,24 @@ class Account extends Component {
         let { user, videos } = this.props;
         return (
             <div id='account' className='account'>
-                <div id='account-info'>
-                    <h2 className="h2"> Your Info:</h2>
-                    <p className="p">Username: {user.user !== null ? user.user.username : ""}</p>
-                    <p className="p">Email: {user.user !== null ? user.user.email : ""}</p>
+                <div id='account-info' className="card">
+                    <div className='card-body'>
+                        <h2 className="h2"> Your Info:</h2>
+                        <h5 className="h5">Username: {user.user !== null ? user.user.username : ""}</h5>
+                        <h5 className="h5">Email: {user.user !== null ? user.user.email : ""}</h5>
+                    </div>
                 </div>
                 <h2 className="h2">Your Contributions:</h2>
                 <PersonalVideos user={user} videos={videos}/>
+                <br/>
                 <div id='edit-form-container'>
-                    <Link to='/account/edit'>Edit Account</Link>
+                    <Link className="btn btn-dark" to='/account/edit'>Edit Account</Link>
+                    <br/>
                     <Route path='/account/edit' >
                         <EditAccount id='edit' user={user} />
                     </Route>
-                    <Link to='account/add'>New Video</Link>
+                    <br/>
+                    <Link className="btn btn-secondary" to='account/add'>New Video</Link>
                     <Route path='/account/add' >
                         <AddVideo id='add' />
                     </Route>

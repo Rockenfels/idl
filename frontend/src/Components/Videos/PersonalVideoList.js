@@ -15,8 +15,8 @@ function PersonalVideoList(props) {
         return props.myVideos.map(video => {
             return( 
                 <div className="list-group-item" key={video.uid}>
-                    <Link to={`/videos/${video.uid}`}>{video.title}</Link>
-                    <button name={video.uid} onClick={handleRemove}>Remove Video</button>
+                    <Link className="btn btn-outline-primary btn-block" to={`/videos/${video.uid}`}>{video.title}</Link>
+                    <button className='btn btn-danger' name={video.uid} onClick={handleRemove}>Remove Video</button>
                 </div>)
         })
     }

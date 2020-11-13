@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return(
-        <div id='welcome' className="card">
+        <div id='welcome' className="card account-card">
             <div className="card-body">
                 <h1 className="h1">Welcome to Idl!</h1>
                 <p className="p">

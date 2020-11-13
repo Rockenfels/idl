@@ -43,11 +43,19 @@ class EditAccount extends Component {
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor='new-email'>New Email:</label>
-                <input id='new-email' type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
-                <label htmlFor='new-password'>New Password:</label>
-                <input id='new-password' type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
-                <input type="submit" value="Update" />
+                <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" htmlFor='new-email'>New Email:</label>
+                        <div class="col-sm-10"> 
+                            <input className="form-control" id='new-email' type="text" name="email" value={this.state.email} onChange={this.handleChange}/>
+                        </div>
+                        <label className="col-sm-2 col-form-label" htmlFor='new-password'>New Password:</label>
+                        <div class="col-sm-10">   
+                            <input className="form-control" id='new-password' type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+                        </div>
+                        <div class="col-sm-10">
+                            <input className="form-control btn btn-primary" type="submit" value="Update" />
+                        </div>
+                    </div>
             </form>
         );
     }

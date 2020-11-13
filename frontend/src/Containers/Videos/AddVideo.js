@@ -28,11 +28,19 @@ function AddVideo(){
 
     return (
         <form id='add-video' onSubmit={handleSubmit}>
-            <label htmlFor="video-title">Video Title: </label>
-            <input id="video-title" type="text" />
-            <label htmlFor="video-url">Video URL: </label>
-            <input id="video-url" name="video-url" type="text" />
-            <input name="submit" type="submit" value="Add Video" />
+            <div className="form-group row">    
+                <label className="col-sm-2 col-form-label" htmlFor="video-title">Video Title: </label>
+                <div class="col-sm-10">  
+                    <input className="form-control" id="video-title" type="text" />
+                </div>
+                <label className="col-sm-2 col-form-label" htmlFor="video-url">Video URL: </label>
+                <div class="col-sm-10">    
+                    <input className="form-control" id="video-url" name="video-url" type="text" />
+                </div>
+                <div class="col-sm-10">    
+                    <input className="form-control btn btn-primary" name="submit" type="submit" value="Add Video" />
+                </div>
+            </div>
         </form>
     )
 }

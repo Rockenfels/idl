@@ -12,14 +12,28 @@ function AuthNavBar({ logout }) {
     } 
 
     return(
-        <nav className="nav">
-                    <NavLink exact to='/' className="navbar-brand">
-                        <img src="" alt="idl logo" />
-                    </NavLink>
-                    <NavLink exact to="/videos" className="nav-item">Videos</NavLink>
-                    <NavLink exact to='/users' className="nav-item">Users</NavLink>
-                    <NavLink exact to='/account' className="nav-item">My Account</NavLink>
-                    <button className="btn" onClick={handleClick}>Logout</button>
+        <nav>
+            <div className='container'>
+                <div className='row'>
+                    <div className='col'>
+                        <NavLink exact to='/' className="navbar-brand">
+                            <img src="" alt="idl logo" />
+                        </NavLink>
+                    </div>
+                    <div className='col'>
+                        <NavLink exact to="/videos" className="item btn btn-secondary">Videos</NavLink>
+                    </div>   
+                    <div className='col'>
+                        <NavLink exact to='/users' className="item btn btn-secondary">Users</NavLink>
+                    </div>   
+                    <div className='col'>   
+                        <NavLink exact to='/account' className="item btn btn-secondary">My Account</NavLink>
+                    </div>    
+                    <div className='col'>
+                        <button className="item btn btn-primary" onClick={handleClick}>Logout</button>
+                    </div>
+                </div>
+            </div>
         </nav>  
     )
 }

@@ -9,7 +9,7 @@ $Idl-5-hex: #6B570A;
 $Idl-1-rgba: rgba(70,98,3, .6);
 $Idl-2-rgba: rgba(35,42,10, .6);
 $Idl-3-rgba: rgba(61,89,15, .6);
-$Idl-4-rgba: rgba(114,63,1, .6);
+$Idl-4-rgba: rgba(114,63,1, .8);
 $Idl-5-rgba: rgba(107,86,10, .8);
 
 /* Color Theme Swatches in HSLA */
@@ -49,6 +49,10 @@ code {
     monospace;
 }
 
+h1, h2, h3, h4, h5 {
+  border-color: $Idl-2-hex;
+}
+
 .btn{
   border-color: $Idl-2-hex;
 }
@@ -66,7 +70,7 @@ code {
   color: gainsboro;
 }
 
-.btn.btn-primary.active{
+.btn.btn-primary:active{
   background-color: $Idl-3-hex;
 }
 
@@ -89,6 +93,7 @@ code {
 
 .card{
   background-color:  $Idl-3-rgba;
+  @include center;
 }
 
 .list-group{
@@ -107,4 +112,26 @@ code {
 .login{
   background-color: $Idl-3-rgba;
 }
+
+.account{
+  background-color: $Idl-3-rgba;
+  padding-bottom: 3%;
+}
+
+.embed-responsive{
+  position: -webkit-sticky;
+  position: sticky;
+  right: 0;
+}
+
+#account{
+  @include center;
+  background-color: $Idl-2-rgba;
+}
+
+#all-videos{
+  width: 90%;
+}
+
+
 
