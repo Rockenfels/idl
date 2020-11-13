@@ -9,6 +9,7 @@ import Home from '../../Components/Display/Home';
 import AllUsers from '../Users/AllUsers';
 import User from '../../Components/Users/User';
 import AllVideos from '../../Components/Videos/AllVideos';
+import VideoSearch from '../../Components/Videos/VideoSearch';
 import VideoViewer from '../../Components/Videos/VideoViewer';
 import NoMatch from '../../Components/Display/NoMatch';
 import Account from '../Users/Account'
@@ -33,26 +34,30 @@ class AuthApp extends Component{
           </Route>
 
           <Route path="/users">
-          <div id="auth-users">
-            <AllUsers users={this.props.users} />
-            <Route exact path="/users/:userId" >
-              <User users={users} />
-            </Route>
-          </div>
-        </Route>
+            <div id="auth-users">
+              <AllUsers users={this.props.users} />
+              <Route exact path="/users/:userId" >
+                <User users={users} />
+              </Route>
+            </div>
+          </Route>
 
-        <Route path="/users/:userId" >
-          <User />
-        </Route>
+          <Route path="/users/:userId" >
+            <User />
+          </Route>
 
-        <Route path={`/videos`} >
-          <AllVideos videos={videos} />
-        </Route>
+          <Route path={`/videos`} >
+            <AllVideos videos={videos} />
+          </Route>
 
-        <Route path="/videos/:video">
+          <Route path="/videos/:video">
 
-          <VideoViewer videos={videos} />
-        </Route>
+            <VideoViewer videos={videos} />
+          </Route>
+
+          <Route path={'/search'}>
+            <VideoSearch videos={videos}/>
+          </Route>
 
           <Route path='/account'>
               <Account videos={videos} />

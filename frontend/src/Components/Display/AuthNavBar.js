@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-
+import logo from '../../images/logo.jpg'
 
 function AuthNavBar({ logout }) {
     const history = useHistory();
@@ -17,7 +17,7 @@ function AuthNavBar({ logout }) {
                 <div className='row'>
                     <div className='col'>
                         <NavLink exact to='/' className="navbar-brand">
-                            <img src="" alt="idl logo" />
+                            <img className="img-thumbnail rounded" src={logo} alt="idl logo" />
                         </NavLink>
                     </div>
                     <div className='col'>

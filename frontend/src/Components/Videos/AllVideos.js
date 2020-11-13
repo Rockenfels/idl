@@ -1,13 +1,19 @@
 import React from 'react';
 import VideoList from './VideoList'
 import VideoViewer from './VideoViewer'
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import VideoSearch from './VideoSearch';
+
 const AllVideos = (props) => {
     return (
         <div id='all-videos' className='card'>
             <div className='card-body'>
-                <h2 className="h2">Pick something to keep you busy:</h2>
                 <div className="container">
+                    <div className="row">
+                        <div className="col-6">
+                            <h2 className="h2">Pick something to keep you busy:</h2>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-4">
                             <VideoList videos={props.videos.videos} />

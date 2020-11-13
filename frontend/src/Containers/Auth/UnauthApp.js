@@ -15,6 +15,7 @@ import Footer from '../../Components/Display/Footer';
 import Login from './Login';
 import { getUsers } from '../../Reducers/manageUsers';
 import { getVideos } from '../../Reducers/manageVideos';
+import VideoSearch from '../../Components/Videos/VideoSearch';
  class UnauthApp extends Component{
   componentDidMount(){
     this.props.getUsers();
@@ -50,8 +51,11 @@ import { getVideos } from '../../Reducers/manageVideos';
             </Route>
 
             <Route exact path="/videos/:video">
-
               <VideoViewer videos={videos} />
+            </Route>
+
+            <Route path={'/search'}>
+              <VideoSearch videos={videos}/>
             </Route>
 
             <Route exact path='/login'>
