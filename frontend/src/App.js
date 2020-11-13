@@ -15,8 +15,8 @@ class App extends Component {
     return (
     <>
       {window.localStorage.getItem('user') !== null ? 
-        <AuthApp /> : 
-        <UnauthApp/>}
+        <AuthApp className="container-fluid" /> : 
+        <UnauthApp className="container-fluid"/>}
     </>
     );
   }

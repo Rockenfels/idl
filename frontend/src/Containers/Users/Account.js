@@ -4,21 +4,22 @@ import PersonalVideos from '../Videos/PersonalVideos';
 import EditAccount from './EditAccount';
 import { Link, Route } from 'react-router-dom';
 import AddVideo from '../Videos/AddVideo';
-import { sendLogin } from '../../Reducers/user';
+import { login } from '../../Reducers/user';
 import { getVideos } from '../../Reducers/manageVideos';
 
 class Account extends Component {
     componentDidMount(){
         let localUser = window.localStorage.getItem('user');
         if(localUser !== null && this.props.user.user === null){
-            this.props.sendLogin(JSON.parse(localUser));
+            this.props.login(JSON.parse(localUser));
         }
         if(this.props.videos.videos.length === 0){
             this.props.getVideos();
         }
     }
 
-    render(){    
+    render(){ 
+   
         let { user, videos } = this.props;
         return (
             <div id='account' className='account'>
@@ -47,4 +48,4 @@ const mapStateToProps = (state) => ({
     user: state.user,
     videos: state.videos
 })
-export default connect(mapStateToProps, {sendLogin, getVideos})(Account);
+export default connect(mapStateToProps, {login, getVideos})(Account);

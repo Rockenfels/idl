@@ -66,7 +66,7 @@ export const sendSignup = (user) => {
       
           fetch(url + "signup", configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Created'){
-                dispatch(accepted);
+                dispatch(signup(json.user));
             }
                else {
                 dispatch(rejected);
@@ -92,7 +92,8 @@ export const sendEdit = (user) => {
       
           fetch(url + user.id, configObj).then(response => response.json()).then(json => {
               if(json.message === 'User Updated'){
-                  dispatch(editUser(user));
+                  window.localStorage.setItem('user', JSON.stringify(json.user));
+                  dispatch(editUser(json.user));
                   dispatch(accepted);
               }
               else{
@@ -105,6 +106,10 @@ export const sendEdit = (user) => {
 export const editUser = (user) => ({
     type: 'EDIT_USER',
     user
+})
+
+export const signup = () => ({
+    type: 'SIGNUP'
 })
 
 export default function user(state={
@@ -127,7 +132,9 @@ export default function user(state={
         case 'REJECTED':
             return {...state, rejected: true, accepted: false, pending: false};
         case 'EDIT_USER':
-            return {...state, user: action.user}
+            return {...state, user: action.user};
+        case 'SIGNUP':
+            return {...state, accepted: true}
         default:
             return state;
     }

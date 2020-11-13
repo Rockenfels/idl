@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 function Login() {
     const history = useHistory();
-    const { user } = useSelector(state => state.user);
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     const handleLogin = (e) => {
@@ -22,26 +22,32 @@ function Login() {
             else{
                 window.alert("There was a problem, make sure your info is correct and try again.");
             }
-        }, 500);
+        }, 1000);
     }
 
     const handleSignup = (e) => {
         e.preventDefault();
+        let username = document.getElementById('signup-username').value;
+        let email = document.getElementById('signup-email').value;
+        let pass = document.getElementById('signup-password').value;
+        let passConf = document.getElementById('signup-password-confirmation').value;
+
        dispatch(sendSignup(
-           {username: e.target.username.value, 
-            email: e.target.email.value,
-            password: e.target.password.value,
-            password_confirmation: e.target.password_confirmation.value, 
-            uuid: uuid()}
+           {username: username, 
+            email: email,
+            password: pass,
+            password_confirmation: passConf, 
+            uid: uuid()}
             ));
-            setTimeout(() => {
-                if(user.accepted === true){
-                    window.alert("Account created, please sign in.");
-                }
-                else{
-                    window.alert('There was a problem with your info, please try again.');
-                }  
-        }, 500)
+
+        setTimeout(() => {
+                window.alert("Account sent to server, please try logging in.");
+                document.getElementById('signup-username').value = "";
+                document.getElementById('signup-email').value = "";
+                document.getElementById('signup-password').value = "";
+                document.getElementById('signup-password-confirmation').value = "";
+            
+        }, 1000)
     }
 
     
@@ -59,14 +65,14 @@ function Login() {
             <h1>Signup:</h1>
             <form onSubmit={handleSignup}>
                 <label for="username">Username: </label>
-                <input type="text" name="username" />
+                <input id="signup-username" type="text" name="username" />
                 <label for="email">Email: </label>
-                <input type="text" name="email" />
+                <input id="signup-email" ype="text" name="email" />
                 <label for="password">Password: </label>
-                <input type="password" name="password" />
+                <input id="signup-password" type="password" name="password" />
                 <label for="password-confirmation">Confirm Password: </label>
-                <input type="password" name="password-confirmation" />
-                <input type="submit" value="Login" />
+                <input id="signup-password-confirmation" type="password" name="password-confirmation" />
+                <input type="submit" value="Create Account" />
             </form>
         </div>
     )

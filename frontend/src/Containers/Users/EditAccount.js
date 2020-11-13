@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { sendEdit } from '../../Reducers/user'
+import { sendEdit } from '../../Reducers/user';
+import { getVideos } from '../../Reducers/manageVideos';
+import { withRouter } from 'react-router-dom';
 
 class EditAccount extends Component {
     constructor(props){
@@ -30,15 +32,15 @@ class EditAccount extends Component {
                 window.alert('Edits successful');
                 e.target.email.value = "";
                 e.target.password.value = "";
+                this.props.history.push('/account');
             }
             else {
                 window.alert('Invalid update, try again.')
             }
-        }, 5000); 
+        }, 500); 
     }
 
     render(){
-        
         return(
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor='new-email'>New Email:</label>
@@ -54,4 +56,4 @@ class EditAccount extends Component {
 const mapStateToProps = (state) => ({
     user: state.user
 })
-export default connect(mapStateToProps, {sendEdit})(EditAccount);
+export default withRouter(connect(mapStateToProps, {sendEdit, getVideos})(EditAccount));

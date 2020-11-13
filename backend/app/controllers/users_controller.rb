@@ -1,4 +1,3 @@
-require 'pry'
 class UsersController < ApplicationController
     def index
         users = User.all()
@@ -22,7 +21,7 @@ class UsersController < ApplicationController
             user.password = params[:user][:password]
         end
         if user != nil && user.save
-            render json: {message: 'User Updated'}
+            render json: {message: 'User Updated', user: user}
         end
     end
 
@@ -39,17 +38,18 @@ class UsersController < ApplicationController
     def signup
         user = User.new(user_params);
         if user.save
-            render json: {message: 'User Created'}
+            render json: {message: 'User Created', user: user}
         end
     end
 
     def login
         user = User.find_by(username: params[:user][:username])
-        
         if !user.nil? && user.authenticate(params[:user][:password])
             render json: {message: 'User Found', user: user}
         elsif !user.nil? && user.password_digest === params[:user][:password_digest]
             render json: {message: 'User Found', user: user}
+        else
+            render json: {message: 'User Not Found'}
         end
 
     end
