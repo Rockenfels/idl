@@ -19,7 +19,7 @@ const UnauthNavBar = () => {
                             <NavLink to='/users' className="item btn btn-secondary">Users</NavLink>
                         </div>
                         <div className="col-6">
-                            <NavLink className='btn btn-dark' to='/search'>Title Search</NavLink>
+                            <NavLink className='btn btn-warning' to='/search'>Title Search</NavLink>
                         </div>
                         <div className='col'>
                             <NavLink to='/login' className="item btn btn-primary">Log in</NavLink>

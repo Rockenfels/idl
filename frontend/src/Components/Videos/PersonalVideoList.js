@@ -21,12 +21,20 @@ function PersonalVideoList(props) {
         })
     }
     return(
-        <div className="video-list">
-            <h3 className="h3">Videos</h3>
-            <div className="list-group">
-            {renderVideos()}
-            </div>  
-        </div>
+                <div className="container">
+                    <div className='row'>
+                       <div className='col-12'> 
+                            <h3 className="h3">Videos</h3>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-12'>
+                            <div className="list-group">
+                            {renderVideos()}
+                            </div> 
+                        </div> 
+                    </div>
+                </div>
     );
 }
 export default PersonalVideoList;

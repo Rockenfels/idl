@@ -10,10 +10,13 @@ function User () {
     let user = users.users.find(user => user.uid === userId);
     
     return(
-        <div className="user-container" >
-            <h2 className="h2">{user.username}</h2>
-            <h2 className="h2">{user.username}'s contributions: </h2>
-            <UserVideos userId={userId} user={user}/>
+        <div className='card'>
+            <div className='card-body'>
+                <div className="user-container" >
+                    <h2 className="h2">{user.username}'s contributions: </h2>
+                    <UserVideos userId={userId} user={user}/>
+                </div>
+            </div>
         </div>
     )
 }

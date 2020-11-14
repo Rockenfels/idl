@@ -30,6 +30,9 @@ function AuthNavBar({ logout }) {
                         <NavLink exact to='/account' className="item btn btn-secondary">My Account</NavLink>
                     </div>    
                     <div className='col'>
+                        <NavLink exact to='/search' className="item btn btn-warning">Title Search</NavLink>
+                    </div>
+                    <div className='col'>
                         <button className="item btn btn-primary" onClick={handleClick}>Logout</button>
                     </div>
                 </div>

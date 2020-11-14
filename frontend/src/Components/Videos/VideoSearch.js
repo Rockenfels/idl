@@ -19,7 +19,6 @@ class VideoSearch extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let video = this.props.videos.videos.filter(video => video.title.includes(this.state.terms));
-        debugger;
         if(video.length > 0){    
             this.setState(state => ({
                 result: video
