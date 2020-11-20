@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
-    const history = useHistory();
+    let history = useHistory();
     const dispatch = useDispatch();
 
     const handleLogin = (e) => {
@@ -56,7 +56,7 @@ function Login() {
             <form onSubmit={handleLogin}>
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label" for="username">Username: </label>
-                    <div class="col-sm-10">
+                    <div className="col-sm-10">
                         <input type="text" className="form-control" name="username" />
                     </div>
                 </div>

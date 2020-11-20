@@ -22,6 +22,7 @@ export const accepted = () => ({
 });
 
 export const sendLogin = (user) => {
+    console.log(user);
     return (dispatch) => {
         dispatch(pending);
         let formData = {

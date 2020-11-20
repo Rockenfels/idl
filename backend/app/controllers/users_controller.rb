@@ -44,9 +44,7 @@ class UsersController < ApplicationController
 
     def login
         user = User.find_by(username: params[:user][:username])
-        if !user.nil? && user.authenticate(params[:user][:password])
-            render json: {message: 'User Found', user: user}
-        elsif !user.nil? && user.password_digest === params[:user][:password_digest]
+        if !user.nil? && user.authenticate(params[:user][:password]) != false
             render json: {message: 'User Found', user: user}
         else
             render json: {message: 'User Not Found'}

@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 
 function User () {
     
-    let { userId } = useParams();
-    let users = useSelector(state => state.users);
+    const { userId } = useParams();
+    const users = useSelector(state => state.users);
     let user = users.users.find(user => user.uid === userId);
     
     return(
