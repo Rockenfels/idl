@@ -8,13 +8,13 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.0]
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
-      t.string   :reset_password_token
-      t.datetime :reset_password_sent_at
+      # t.string   :reset_password_token
+      # t.datetime :reset_password_sent_at
 
       ## Rememberable
-      t.datetime :remember_created_at
+      # t.datetime :remember_created_at
 
-      t.string :unconfirmed_email
+      # t.string :unconfirmed_email
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

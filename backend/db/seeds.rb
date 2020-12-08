@@ -8,9 +8,9 @@ require 'uuid'
 #   Character.create(name: 'Luke', movie: movies.first)
 uuid = UUID.new
 
-larry = User.create({username: 'Larry', email: 'larry@stooges.com', password: 'Larry', uid: uuid.generate})
-curly = User.create({username: 'Curly', email: 'curly@stooges.com', password: 'Curly', uid: uuid.generate})
-moe = User.create({username: 'Moe', email: 'moe@stooges.com', password: 'Moe', uid: uuid.generate})
+larry = User.create({username: 'Larry', email: 'larry@stooges.com', password: 'Larry', password_confirmation: 'Larry', uid: uuid.generate})
+curly = User.create({username: 'Curly', email: 'curly@stooges.com', password: 'Curly', pasword_confirmation: 'Curly', uid: uuid.generate})
+moe = User.create({username: 'Moe', email: 'moe@stooges.com', password: 'Moe', password_confirmation: 'Moe', uid: uuid.generate})
 
 video1 = Video.create({title: 'my first video', url:'https://www.youtube.com/watch?v=MhG2bVXTyHQ', uid: uuid.generate})
 video2 = Video.create({title: 'my second video', url:'https://youtu.be/a5r14_aXA4I', uid: uuid.generate})
