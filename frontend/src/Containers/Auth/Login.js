@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { sendLogin, sendSignup } from '../../Reducers/user';
 import { v4 as uuid } from 'uuid';
 import { useHistory } from 'react-router-dom';
@@ -7,21 +7,22 @@ import { useHistory } from 'react-router-dom';
 function Login() {
     let history = useHistory();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     const handleLogin = (e) => {
         e.preventDefault();
         let login = ({username: e.target.username.value, 
-            password: e.target.username.value 
+            password: e.target.password.value 
         });
         dispatch(sendLogin(login));
         setTimeout(() => {
-            if(window.localStorage.getItem('user') !== null){
-                history.push('/account');
+            if(user.user !== null){
+                history.replace('/');
             }
             else{
                 window.alert("There was a problem, make sure your info is correct and try again.");
             }
-        }, 1000);
+        }, 500);
     }
 
     const handleSignup = (e) => {
@@ -40,11 +41,17 @@ function Login() {
             ));
 
         setTimeout(() => {
+            debugger;
+            if(user.accepted){
                 window.alert("Account sent to server, please try logging in.");
                 document.getElementById('signup-username').value = "";
                 document.getElementById('signup-email').value = "";
                 document.getElementById('signup-password').value = "";
                 document.getElementById('signup-password-confirmation').value = "";
+            }
+            else {
+                window.alert("There was a problem, please try again.");
+            }
             
         }, 1000)
     }
@@ -55,19 +62,19 @@ function Login() {
             <h1 className="h1">Login Below:</h1>
             <form onSubmit={handleLogin}>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label" for="username">Username: </label>
+                    <label className="col-sm-2 col-form-label" htmlFor="username">Username: </label>
                     <div className="col-sm-10">
                         <input type="text" className="form-control" name="username" />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label" for="password">Password: </label>
-                    <div class="col-sm-10">
+                    <label className="col-sm-2 col-form-label" htmlFor="password">Password: </label>
+                    <div className="col-sm-10">
                         <input type="password" className="form-control" name="password" />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <div class="col-sm-10">
+                    <div className="col-sm-10">
                         <input type="submit" className="form-control btn btn-primary" value="Login" />
                     </div>
                 </div>
@@ -78,31 +85,31 @@ function Login() {
             <br/>
             <form onSubmit={handleSignup}>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label" for="username">Username: </label>
-                    <div class="col-sm-10">
+                    <label className="col-sm-2 col-form-label" htmlFor="username">Username: </label>
+                    <div className="col-sm-10">
                         <input className="form-control" id="signup-username" type="text" name="username" />
                     </div>
                 </div>
                 <div className="form-group row">  
-                    <label className="col-sm-2 col-form-label" for="email">Email: </label>
-                    <div class="col-sm-10">
+                    <label className="col-sm-2 col-form-label" htmlFor="email">Email: </label>
+                    <div className="col-sm-10">
                         <input className="form-control" id="signup-email" type="text" name="email" />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label" for="password">Password: </label>
-                    <div class="col-sm-10"> 
+                    <label className="col-sm-2 col-form-label" htmlFor="password">Password: </label>
+                    <div className="col-sm-10"> 
                         <input className="form-control" id="signup-password" type="password" name="password" />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label" for="password-confirmation">Confirm Password: </label>
-                    <div class="col-sm-10">   
+                    <label className="col-sm-2 col-form-label" htmlFor="password-confirmation">Confirm Password: </label>
+                    <div className="col-sm-10">   
                         <input className="form-control" id="signup-password-confirmation" type="password" name="password-confirmation" />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <div class="col-sm-10">
+                    <div className="col-sm-10">
                         <input type="submit" className="form-control btn btn-primary" value="Create Account" />
                     </div>
                 </div>

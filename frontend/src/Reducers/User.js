@@ -22,7 +22,6 @@ export const accepted = () => ({
 });
 
 export const sendLogin = (user) => {
-    console.log(user);
     return (dispatch) => {
         dispatch(pending);
         let formData = {
@@ -40,7 +39,7 @@ export const sendLogin = (user) => {
           fetch(url + "login", configObj).then(response => response.json()).then(json => {
             if(json.message === 'User Found'){
                 window.localStorage.setItem( 'user', JSON.stringify(json.user))
-                json.user.password = user.password
+
                 dispatch(login(json.user));
               }
               else {
@@ -66,8 +65,9 @@ export const sendSignup = (user) => {
           };
       
           fetch(url + "signup", configObj).then(response => response.json()).then(json => {
+              console.log(json)
               if(json.message === 'User Created'){
-                dispatch(signup(json.user));
+                dispatch(signup);
             }
                else {
                 dispatch(rejected);

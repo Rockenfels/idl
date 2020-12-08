@@ -29,20 +29,20 @@ import VideoSearch from '../../Components/Videos/VideoSearch';
           <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />
           <Switch>
-            <Route exact path="/">
+            <Route exact="true" path="/">
               <Home />
             </Route>
 
             <Route path="/users">
               <div id="unauth-users">
                 <AllUsers users={this.props.users} />
-                <Route exact path="/users/:userId" >
+                <Route path="/users/:userId" >
                   <User users={users} />
                 </Route>
               </div>
             </Route>
             
-            <Route exact path="/users/:userId" >
+            <Route path="/users/:userId" >
               <User users={users} />
             </Route>
 
@@ -50,7 +50,7 @@ import VideoSearch from '../../Components/Videos/VideoSearch';
               <AllVideos videos={videos} />
             </Route>
 
-            <Route exact path="/videos/:video">
+            <Route path="/videos/:video">
               <VideoViewer videos={videos} />
             </Route>
 
@@ -58,7 +58,7 @@ import VideoSearch from '../../Components/Videos/VideoSearch';
               <VideoSearch videos={videos}/>
             </Route>
 
-            <Route exact path='/login'>
+            <Route path='/login'>
                 <Login />
             </Route>
 

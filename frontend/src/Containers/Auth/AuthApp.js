@@ -29,14 +29,14 @@ class AuthApp extends Component{
         <div className="auth-app">
         <AuthNavBar logout={this.props.logout} />
         <Switch>
-          <Route exact path="/">
+          <Route exact="true" path="/">
             <Home />
           </Route>
 
           <Route path="/users">
             <div id="auth-users">
               <AllUsers users={this.props.users} />
-              <Route exact path="/users/:userId" >
+              <Route path="/users/:userId" >
                 <User users={users} />
               </Route>
             </div>
