@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: :sessions
+  namespace :users do
+    devise_for :users, skip: [:sessions, :new, :edit, :show], skip_helpers: true
+  end
   resources :videos, only: [:index, :create, :destroy]
-  resources :users, except: [:new, :edit, :show]
 
   post '/users/signup', to: 'users#signup';
   post '/users/login', to: 'users#login';

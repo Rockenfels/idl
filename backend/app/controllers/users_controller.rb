@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!
+    
     def index
         users = User.all()
         render json: users, except: [:email, :password_digest, :updated_at, :created_at]
