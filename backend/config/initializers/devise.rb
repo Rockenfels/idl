@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '316a61867a9bd0a1f811a5bfaaaed6c3f69354d0c81f10e793ab341e78b5464f5c4b82da7fa20ad82c7582e7eddf9f67537a6d681b7d9d61adb954ba142c3141'
+  # config.secret_key = '69bd43f96d3a7485b007c67abb3fc319edffa6f903db4650628a2fb65a082a9c09265cb6090681dda9171c740ea7a2a4a707708392dbeacac81a367a144ee4f0'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -70,7 +70,6 @@ Devise.setup do |config|
   # given strategies, for example, `config.params_authenticatable = [:database]` will
   # enable it only for database (email + password) authentication.
   # config.params_authenticatable = true
-  config.params_authenticatable = [:database]
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
@@ -80,7 +79,7 @@ Devise.setup do |config|
   # enable this with :database unless you are using a custom strategy.
   # The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = [:database]
+  # config.http_authenticatable = false
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -127,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'caeb420aa5a1bf82560e6fafb2991833bd13d7d0674c99d9a590da95f193e0970dd2fe8275fff603115123ab2e29a3ef4b6374cb31556051baf916f0e2535dcc'
+  # config.pepper = 'a7b167876b21b7039661ad783c10948119ca9eff4fa5d759990496368794630d2b8de99a0e3413af36addd37fe3141838a98f16c28db759989e4aa5e762f92c1'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -165,7 +164,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  config.remember_for = 2.weeks
+  # config.remember_for = 2.weeks
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
