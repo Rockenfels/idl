@@ -1,8 +1,8 @@
-const url = 'http://localhost:3001/users/';
+const url = 'http://localhost:3001/auth/';
 
-export const login = (user) => ({
+export const login = (loginInfo) => ({
     type: 'LOGIN',
-    user
+    loginInfo
 });
 
 export const logout = () => ({
@@ -21,31 +21,49 @@ export const accepted = () => ({
     type: 'ACCEPTED'
 });
 
+// Dispatched action for async login request to RoR backend
 export const sendLogin = (user) => {
     return (dispatch) => {
         dispatch(pending);
         let formData = {
-            user
+            email: user.email,
+            password: user.password
           };
-          let configObj = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(formData)
-          }
+        let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        }
 
-          fetch(url + "login", configObj).then(response => response.json()).then(json => {
-            if(json.message === 'User Found'){
-                window.localStorage.setItem( 'user', JSON.stringify(json.user))
+        // Declare variables for header storage
+        const client = undefined;
+        const accessToken = undefined;
+        const uid = undefined;
 
-                dispatch(login(json.user));
+        // Send login request and store client/token headers for auth
+        fetch(url + "sign_in", configObj).then(response => {
+            client = response.headers.get('client');
+            accessToken = response.headers.get('access-token');
+            uid = response.headers.get('uid');
+            response.json();
+        }).then(json => {
+            if(uid !== undefined && accessToken !== undefined){
+                window.localStorage.setItem( 'uid', JSON.stringify(uid));
+
+                const loginInfo = {
+                    client,
+                    'access-token': accessToken,
+                    uid
+                };
+                dispatch(login(loginInfo));
               }
-              else {
+            else {
                 dispatch(rejected);
-              }
-          });
+            }
+        });
     }
 }
 
@@ -64,7 +82,7 @@ export const sendSignup = (user) => {
             body: JSON.stringify(formData)
           };
       
-          fetch(url + "signup", configObj).then(response => response.json()).then(json => {
+          fetch(url, configObj).then(response => response.json()).then(json => {
               console.log(json)
               if(json.message === 'User Created'){
                 dispatch(signup);
@@ -83,7 +101,7 @@ export const sendEdit = (user) => {
             user
           };
           let configObj = {
-            method: "PATCH",
+            method: "PUT",
             headers: {
               "Content-Type": "application/json",
               "Accept": "application/json"

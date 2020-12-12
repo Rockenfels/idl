@@ -37,8 +37,8 @@ module Idl
         origins '*'
         resource '*',
           :headers => :any,
-          :methods => [:get, :post, :delete, :put, :patch, :options, :head],
-          :max_age => 0
+          :methods => [:get, :post, :delete, :put, :options],
+          expose: ['access-token', 'expiry', 'token-type', 'uid', 'client']
       end
     end
 
