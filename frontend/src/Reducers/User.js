@@ -1,5 +1,6 @@
 const url = 'http://localhost:3001/auth/';
 
+// Basic actions for various user states
 export const signup = () => ({
     type: 'SIGNUP'
 })
@@ -121,8 +122,8 @@ export const sendLogin = (user) => {
                     email: user.email
                 }
 
+                // Stores validated user info, headers, and token 
                 window.localStorage.setItem( 'user', JSON.stringify(user));
-
                 dispatch(login(user));
             }
             else {
@@ -132,19 +133,50 @@ export const sendLogin = (user) => {
     }
 }
 
+// Dispatched action for async login request to RoR backend and sets anync status to pending
+export const sendLogout = () => {
+    return (dispatch) => {
+
+        dispatch(pending);
+
+        let user = JSON.parse(window.localStorage.getItem('user'));
+
+        let configObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "uid": user.uid,
+                "access-token": user.accessToken,
+                "client": user.client
+            },
+        }
+
+        // Send login request and store client/token headers for auth
+        fetch(url + "sign_out", configObj).then(response => response.json()).then(json => {
+            if(json.success === true){
+
+                // Clear local and redux storage
+                dispatch(logout());
+            }
+        });
+    }
+}
+
 export default function user(state={
     user: null, 
     pending: false, 
     accepted: false, 
-    rejected: false
+    rejected: false,
+    errors: []
 }, action){
 
     switch(action.type){
         case 'LOGIN':
             return {user: action.user, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
-            window.localStorage.removeItem('user');
-            return {...state, user: undefined, accepted: true}
+            window.localStorage.clear();
+            return {...state, user: undefined};
         case 'ACCEPTED':
             return {...state, accepted: true, rejected: false, pending: false}
         case 'PENDING':
@@ -152,7 +184,9 @@ export default function user(state={
         case 'REJECTED':
             return {...state, rejected: true, accepted: false, pending: false};
         case 'SIGNUP':
-            return {...state, accepted: true}
+            return {...state, accepted: true};
+        case 'ERRORS':
+            return {...state, errors: action.errors};
         default:
             return state;
     }
