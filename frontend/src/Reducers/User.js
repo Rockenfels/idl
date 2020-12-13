@@ -94,38 +94,6 @@ export const sendSignup = (user) => {
     }
 }
 
-export const sendEdit = (user) => {
-    return (dispatch) => {
-        dispatch(pending);
-        let formData = {
-            user
-          };
-          let configObj = {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(formData)
-          };
-      
-          fetch(url + user.id, configObj).then(response => response.json()).then(json => {
-              if(json.message === 'User Updated'){
-                  window.localStorage.setItem('user', JSON.stringify(json.user));
-                  dispatch(editUser(json.user));
-                  dispatch(accepted);
-              }
-              else{
-                  dispatch(rejected);
-              }
-          });
-    }
-}
-
-export const editUser = (user) => ({
-    type: 'EDIT_USER',
-    user
-})
 
 export const signup = () => ({
     type: 'SIGNUP'
@@ -150,8 +118,6 @@ export default function user(state={
             return {...state, pending: true, accepted: false, rejected: false};
         case 'REJECTED':
             return {...state, rejected: true, accepted: false, pending: false};
-        case 'EDIT_USER':
-            return {...state, user: action.user};
         case 'SIGNUP':
             return {...state, accepted: true}
         default:
