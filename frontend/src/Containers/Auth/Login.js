@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendLogin, sendSignup } from '../../Reducers/user';
-import { v4 as uuid } from 'uuid';
+import { sendLogin, sendSignup } from '../../Reducers/User';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
@@ -11,16 +10,18 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        let login = ({username: e.target.username.value, 
+
+        let login = ({email: e.target.email.value, 
             password: e.target.password.value 
         });
         dispatch(sendLogin(login));
         setTimeout(() => {
-            if(user.user !== null){
-                history.replace('/');
+            if(window.localStorage.getItem('user') !== null){
+                history.push('/account');
             }
             else{
                 window.alert("There was a problem, make sure your info is correct and try again.");
+                history.replace('/login');
             }
         }, 500);
     }
@@ -37,23 +38,23 @@ function Login() {
             email: email,
             password: pass,
             password_confirmation: passConf, 
-            uid: uuid()}
+           }
             ));
 
         setTimeout(() => {
             debugger;
             if(user.accepted){
-                window.alert("Account sent to server, please try logging in.");
+                window.alert("Account created, please log in.");
                 document.getElementById('signup-username').value = "";
                 document.getElementById('signup-email').value = "";
                 document.getElementById('signup-password').value = "";
                 document.getElementById('signup-password-confirmation').value = "";
             }
             else {
-                window.alert("There was a problem, please try again.");
+                window.alert('Signup failed, please try again.')
             }
             
-        }, 1000)
+        }, 500)
     }
 
     
@@ -62,9 +63,9 @@ function Login() {
             <h1 className="h1">Login Below:</h1>
             <form onSubmit={handleLogin}>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label" htmlFor="username">Username: </label>
+                    <label className="col-sm-2 col-form-label" htmlFor="email">Email: </label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" name="username" />
+                        <input type="text" className="form-control" name="email" />
                     </div>
                 </div>
                 <div className="form-group row">

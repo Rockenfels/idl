@@ -1,8 +1,13 @@
-const url = 'http://localhost:3001/users/';
+const url = 'http://localhost:3001/auth/';
 
-export const login = (user) => ({
+// Basic actions for various user states
+export const signup = () => ({
+    type: 'SIGNUP'
+})
+
+export const login = (loginInfo) => ({
     type: 'LOGIN',
-    user
+    loginInfo
 });
 
 export const logout = () => ({
@@ -21,121 +26,185 @@ export const accepted = () => ({
     type: 'ACCEPTED'
 });
 
-export const sendLogin = (user) => {
+export const errors = (errors) => ({
+    type: 'ERRORS',
+    errors
+})
+
+const startLogin = (uid) => {
     return (dispatch) => {
-        dispatch(pending);
         let formData = {
-            user
-          };
-          let configObj = {
+            uid
+        };
+        let configObj = {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(formData)
-          }
-
-          fetch(url + "login", configObj).then(response => response.json()).then(json => {
-            if(json.message === 'User Found'){
-                window.localStorage.setItem( 'user', JSON.stringify(json.user))
-
-                dispatch(login(json.user));
-              }
-              else {
-                dispatch(rejected);
-              }
-          });
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        };
+      
+        fetch('http://localhost:3001/users/current', configObj).then(response => response.json()).then(json => {
+            dispatch(login(json.user));
+        });
     }
 }
 
+// Dispatched action for async signup request to RoR backend and sets anync status to pending
 export const sendSignup = (user) => {
     return (dispatch) => {
         dispatch(pending);
+
         let formData = {
-            user
+            email: user.email,
+            password: user.password
           };
-          let configObj = {
+
+        let configObj = {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             },
             body: JSON.stringify(formData)
-          };
-      
-          fetch(url + "signup", configObj).then(response => response.json()).then(json => {
-              console.log(json)
-              if(json.message === 'User Created'){
-                dispatch(signup);
+        };
+
+        // Declare variable for successful signup check or errors if signup fails
+        let uid = undefined;
+        let errs = undefined;
+
+        fetch(url, configObj).then(response => {
+
+            // Assigns uid from response headers
+            uid = response.headers.get('uid');
+            errs = response.headers.get('errors');
+
+            response.json()
+        }).then(json => {
+            
+            if(uid !== undefined){
+                dispatch(accepted);
             }
-               else {
+            else {
+                dispatch(errors(errs));
                 dispatch(rejected);
             }
-          });
+        });
     }
 }
 
-export const sendEdit = (user) => {
+// Dispatched action for async login request to RoR backend and sets anync status to pending
+export const sendLogin = (user) => {
     return (dispatch) => {
+
         dispatch(pending);
+
         let formData = {
-            user
+            email: user.email,
+            password: user.password
           };
-          let configObj = {
-            method: "PATCH",
+        
+        let configObj = {
+            method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             },
             body: JSON.stringify(formData)
-          };
-      
-          fetch(url + user.id, configObj).then(response => response.json()).then(json => {
-              if(json.message === 'User Updated'){
-                  window.localStorage.setItem('user', JSON.stringify(json.user));
-                  dispatch(editUser(json.user));
-                  dispatch(accepted);
-              }
-              else{
-                  dispatch(rejected);
-              }
-          });
+        }
+
+        // Declare variables for storage
+        let client = undefined;
+        let accessToken = undefined;
+        let uid = undefined;
+        let expiry = undefined;
+
+        // Send login request and store client/token headers for auth
+        fetch(url + "sign_in", configObj).then(response => {
+            // Assign variables from response headers
+            client = response.headers.get('client');
+            accessToken = response.headers.get('access-token');
+            uid = response.headers.get('uid');
+            expiry = response.headers.get('expiry');
+            response.json();
+        }).then(json => {
+            if(uid !== undefined && accessToken !== undefined){
+
+                // Declare user object for localStorage
+                const userInfo = {
+                    uid,
+                    accessToken,
+                    client,
+                    expiry,
+                    email: user.email,
+                }
+
+                // Stores validated user info, headers, and token 
+                window.localStorage.setItem( 'user', JSON.stringify(userInfo));
+                dispatch(startLogin(userInfo.uid));
+            }
+            else {
+                dispatch(rejected);
+            }
+        });
     }
 }
 
-export const editUser = (user) => ({
-    type: 'EDIT_USER',
-    user
-})
+// Dispatched action for async login request to RoR backend and sets anync status to pending
+export const sendLogout = () => {
+    return (dispatch) => {
 
-export const signup = () => ({
-    type: 'SIGNUP'
-})
+        dispatch(pending);
+
+        let user = JSON.parse(window.localStorage.getItem('user'));
+
+        let configObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "uid": user.uid,
+                "access-token": user.accessToken,
+                "client": user.client
+            },
+        }
+
+        // Send login request and store client/token headers for auth
+        fetch(url + "sign_out", configObj).then(response => response.json()).then(json => {
+            if(json.success === true){
+
+                // Clear local and redux storage
+                dispatch(logout());
+            }
+        });
+    }
+}
 
 export default function user(state={
     user: null, 
     pending: false, 
     accepted: false, 
-    rejected: false
+    rejected: false,
+    errors: []
 }, action){
 
     switch(action.type){
         case 'LOGIN':
-            return {user: action.user, accepted: true, pending: false, rejected: false};
+            return {user: action.loginInfo, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
-            window.localStorage.removeItem('user');
-            return {...state, user: undefined, accepted: true}
+            window.localStorage.clear();
+            return {...state, user: undefined};
         case 'ACCEPTED':
             return {...state, accepted: true, rejected: false, pending: false}
         case 'PENDING':
             return {...state, pending: true, accepted: false, rejected: false};
         case 'REJECTED':
             return {...state, rejected: true, accepted: false, pending: false};
-        case 'EDIT_USER':
-            return {...state, user: action.user};
         case 'SIGNUP':
-            return {...state, accepted: true}
+            return {...state, accepted: true};
+        case 'ERRORS':
+            return {...state, errors: action.errors};
         default:
             return state;
     }

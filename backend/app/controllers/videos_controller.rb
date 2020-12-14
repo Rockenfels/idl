@@ -1,5 +1,6 @@
 require 'uuid'
 class VideosController < ApplicationController
+    
     def index
         videos = Video.all()
         render json: videos, except: [:updated_at]

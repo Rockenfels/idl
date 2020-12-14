@@ -1,13 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import logo from '../../images/logo.jpg'
+import { sendLogout } from '../../Reducers/User';
+import logo from '../../images/logo.jpg';
 
 function AuthNavBar({ logout }) {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const handleClick = (e) => {
         e.preventDefault();
-        logout();
+        dispatch(sendLogout());
         history.push('/');
     } 
 

@@ -8,19 +8,36 @@ require 'uuid'
 #   Character.create(name: 'Luke', movie: movies.first)
 uuid = UUID.new
 
-larry = User.create({username: 'Larry', email: 'larry@stooges.com', password: 'Larry', uid: uuid.generate})
-curly = User.create({username: 'Curly', email: 'curly@stooges.com', password: 'Curly', uid: uuid.generate})
-moe = User.create({username: 'Moe', email: 'moe@stooges.com', password: 'Moe', uid: uuid.generate})
+larry = User.new
+larry.username = 'Larry'
+larry.email = 'larry@stooges.com'
+larry.password = 'larrystooge'
+larry.password_confirmation = 'larrystooge'
+larry.save!
 
-video1 = Video.create({title: 'my first video', url:'https://www.youtube.com/watch?v=MhG2bVXTyHQ', uid: uuid.generate})
-video2 = Video.create({title: 'my second video', url:'https://youtu.be/a5r14_aXA4I', uid: uuid.generate})
-video3 = Video.create({title: 'my third video', url:'https://youtu.be/FkGK7bitav0', uid: uuid.generate})
-video4 = Video.create({title: 'my fourth video', url:'https://www.youtube.com/watch?v=LyC855KdBKo', uid: uuid.generate})
-video5 = Video.create({title: 'my fifth video', url:'https://www.youtube.com/watch?v=oPVte6aMprI', uid: uuid.generate})
-video6 = Video.create({title: 'my sixth video', url:'https://www.youtube.com/watch?v=j-2ZxldMO-M', uid: uuid.generate})
-video7 = Video.create({title: 'my seventh video', url:'https://www.youtube.com/watch?v=WGaICSbCr1c', uid: uuid.generate})
-video8 = Video.create({title: 'my eighth video', url:'https://www.youtube.com/watch?v=l9_-2oG4Cc0', uid: uuid.generate})
-video9 = Video.create({title: 'my ninth video', url:'https://www.youtube.com/watch?v=-etNtlr576E', uid: uuid.generate})
+curly = User.new
+curly.username = 'Curly'
+curly.email = 'curly@stooges.com'
+curly.password = 'curlystooge'
+curly.password_confirmation = 'curlystooge'
+curly.save!
+
+moe = User.new
+moe.username = 'Moe'
+moe.email = 'moe@stooges.com'
+moe.password = 'moestooge'
+moe.password_confirmation = 'moestooge'
+moe.save!
+
+video1 = Video.create({title: 'my first video', url:'https://www.youtube.com/watch?v=MhG2bVXTyHQ', uid: uuid.generate, user_id: larry.id})
+video2 = Video.create({title: 'my second video', url:'https://youtu.be/a5r14_aXA4I', uid: uuid.generate, user_id: larry.id})
+video3 = Video.create({title: 'my third video', url:'https://youtu.be/FkGK7bitav0', uid: uuid.generate, user_id: larry.id})
+video4 = Video.create({title: 'my fourth video', url:'https://www.youtube.com/watch?v=LyC855KdBKo', uid: uuid.generate, user_id: curly.id})
+video5 = Video.create({title: 'my fifth video', url:'https://www.youtube.com/watch?v=oPVte6aMprI', uid: uuid.generate, user_id: curly.id})
+video6 = Video.create({title: 'my sixth video', url:'https://www.youtube.com/watch?v=j-2ZxldMO-M', uid: uuid.generate, user_id: curly.id})
+video7 = Video.create({title: 'my seventh video', url:'https://www.youtube.com/watch?v=WGaICSbCr1c', uid: uuid.generate, user_id: moe.id})
+video8 = Video.create({title: 'my eighth video', url:'https://www.youtube.com/watch?v=l9_-2oG4Cc0', uid: uuid.generate, user_id: moe.id})
+video9 = Video.create({title: 'my ninth video', url:'https://www.youtube.com/watch?v=-etNtlr576E', uid: uuid.generate, user_id: moe.id})
 
 larry.videos << [video1, video2, video3]
 curly.videos << [video4, video5, video6]
