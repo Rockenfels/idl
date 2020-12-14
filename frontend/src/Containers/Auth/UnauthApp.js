@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { login } from '../../Reducers/user';
+import { login } from '../../Reducers/User';
 
 //Component & Container Imports
 import UnauthNavBar from '../../Components/Display/UnauthNavBar';
@@ -29,7 +29,7 @@ import VideoSearch from '../../Components/Videos/VideoSearch';
           <div className="unauth-app">
           <UnauthNavBar login={this.props.login} />
           <Switch>
-            <Route exact="true" path="/">
+            <Route exact path="/">
               <Home />
             </Route>
 

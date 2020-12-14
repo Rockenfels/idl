@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import AuthApp from './Containers/Auth/AuthApp';
 import UnauthApp from './Containers/Auth/UnauthApp';
-import { login } from './Reducers/user';
+import { login } from './Reducers/User';
 
 class App extends Component {
   componentDidMount(){

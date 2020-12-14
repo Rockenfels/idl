@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { logout } from '../../Reducers/user';
+import { logout } from '../../Reducers/User';
 
 //Component & Container Imports
 import AuthNavBar from '../../Components/Display/AuthNavBar';
@@ -75,6 +75,7 @@ class AuthApp extends Component{
 
 const mapStateToProps = (state) => ({
     videos: state.videos,
-    users: state.users
+    users: state.users,
+    user: state.user
 })
 export default connect(mapStateToProps,{logout, getUsers, getVideos})(AuthApp)

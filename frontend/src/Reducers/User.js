@@ -31,14 +31,34 @@ export const errors = (errors) => ({
     errors
 })
 
+const startLogin = (uid) => {
+    return (dispatch) => {
+        let formData = {
+            uid
+        };
+        let configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        };
+      
+        fetch('http://localhost:3001/users/current', configObj).then(response => response.json()).then(json => {
+            dispatch(login(json.user));
+        });
+    }
+}
+
 // Dispatched action for async signup request to RoR backend and sets anync status to pending
 export const sendSignup = (user) => {
     return (dispatch) => {
         dispatch(pending);
 
         let formData = {
-            email,
-            password
+            email: user.email,
+            password: user.password
           };
 
         let configObj = {
@@ -51,8 +71,8 @@ export const sendSignup = (user) => {
         };
 
         // Declare variable for successful signup check or errors if signup fails
-        const uid = undefined;
-        const errs = undefined;
+        let uid = undefined;
+        let errs = undefined;
 
         fetch(url, configObj).then(response => {
 
@@ -84,7 +104,7 @@ export const sendLogin = (user) => {
             email: user.email,
             password: user.password
           };
-
+        
         let configObj = {
             method: "POST",
             headers: {
@@ -95,36 +115,34 @@ export const sendLogin = (user) => {
         }
 
         // Declare variables for storage
-        const client = undefined;
-        const accessToken = undefined;
-        const uid = undefined;
-        const expiry = undefined;
+        let client = undefined;
+        let accessToken = undefined;
+        let uid = undefined;
+        let expiry = undefined;
 
         // Send login request and store client/token headers for auth
         fetch(url + "sign_in", configObj).then(response => {
-
             // Assign variables from response headers
             client = response.headers.get('client');
             accessToken = response.headers.get('access-token');
             uid = response.headers.get('uid');
             expiry = response.headers.get('expiry');
-
             response.json();
         }).then(json => {
             if(uid !== undefined && accessToken !== undefined){
 
                 // Declare user object for localStorage
-                const user = {
+                const userInfo = {
                     uid,
                     accessToken,
                     client,
                     expiry,
-                    email: user.email
+                    email: user.email,
                 }
 
                 // Stores validated user info, headers, and token 
-                window.localStorage.setItem( 'user', JSON.stringify(user));
-                dispatch(login(user));
+                window.localStorage.setItem( 'user', JSON.stringify(userInfo));
+                dispatch(startLogin(userInfo.uid));
             }
             else {
                 dispatch(rejected);
@@ -173,7 +191,7 @@ export default function user(state={
 
     switch(action.type){
         case 'LOGIN':
-            return {user: action.user, accepted: true, pending: false, rejected: false};
+            return {user: action.loginInfo, accepted: true, pending: false, rejected: false};
         case 'LOGOUT':
             window.localStorage.clear();
             return {...state, user: undefined};

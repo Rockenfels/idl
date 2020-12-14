@@ -11,6 +11,5 @@ class User < ActiveRecord::Base
 
   validates :username, :email, uniqueness: true
 
-
   include DeviseTokenAuth::Concerns::User
 end
